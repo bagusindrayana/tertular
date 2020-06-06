@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -44,7 +45,10 @@ class UserController extends Controller
         ]);
 
         $user = User::create([
-            'nama'=>$request->nama
+            'nama'=>$request->nama,
+            'username'=>$request->username,
+            'level'=>$request->level,
+            'password'=>Hash::make($request->password)
         ]);
 
         return redirect(route('admin.user.index'))->with(['success'=>'Menambah Data User Baru Dengan Nama : '.$user->nama]);
