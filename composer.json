@@ -1,4 +1,11 @@
-{
+{   
+    "repositories": [
+        {
+             "type": "composer", 
+             "url": "https://packagist.org"
+        },
+        { "packagist": false }
+    ],
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
