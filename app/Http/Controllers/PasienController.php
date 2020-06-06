@@ -56,7 +56,9 @@ class PasienController extends Controller
         // dd(++$cek);
         //dd($request->all());
         $request->validate([
-            'nama_lengkap'=>'required|string|max:100'
+            'nama_lengkap'=>'required|string|max:100',
+            'jenis_kelamin'=>'required',
+            'alamat'=>'requried'
         ]);
         
         $no = '00000001';
@@ -146,7 +148,9 @@ class PasienController extends Controller
     public function update(Request $request, Pasien $pasien)
     {
         $request->validate([
-            'nama_lengkap'=>'required|string|max:100'
+            'nama_lengkap'=>'required|string|max:100',
+            'jenis_kelamin'=>'required',
+            'alamat'=>'requried'
         ]);
 
         $pasien->update([
