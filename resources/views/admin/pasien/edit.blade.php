@@ -7,7 +7,11 @@
         rel="stylesheet"
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
         type="text/css">
-
+    <style>
+        .select2 {
+            width:100%!important;
+        }       
+    </style>
 @endpush
 
 @section('breadcrumb')
@@ -158,7 +162,7 @@
                     <div class="form-group">
                         <label for="" class="text-danger"><strong>Riwayat Kontak/Interaksi/Perjalanan</strong></label>
                         <div class="input_fields_wrap">
-                            @foreach ($pasien->interaksis as $index => $item)
+                            @forelse ($pasien->interaksis as $index => $item)
                                 <div class="row" @if ($index == 0)
                                 id="clone"
                                 @endif>
@@ -199,7 +203,7 @@
                                         <div class="form-group">
                                             <label for="kota_id">Kota</label>
                                             <select name="kota_id[]" class="form-control select2-kota ajax" data-url="kota">
-                                                <option >Pilih Kota</option>
+                                               
                                                 @if ($item->kota)
                                                 <option value="{{ $item->kota_id }}" selected="selected">{{ $item->kota->nama_kota }}</option>
                                                 @endif
@@ -209,7 +213,7 @@
                                         <div class="form-group">
                                             <label for="kecamatan_id">Kecamatan</label>
                                             <select name="kecamatan_id[]" class="form-control select2-kecamatan ajax" data-url="kecamatan">
-                                                <option >Pilih Kecamatan</option>
+                                               
                                                 @if ($item->kecamatan)
                                                 <option value="{{ $item->kecamatan_id }}" selected="selected">{{ $item->kecamatan->nama_kecamatan }}</option>
                                                 @endif
@@ -220,7 +224,7 @@
                                         <div class="form-group">
                                             <label for="kelurahan_id">Kelurahan</label>
                                             <select name="kelurahan_id[]" class="form-control select2-kelurahan ajax" data-url="kelurahan">
-                                                <option selected="selected">Pilih Kelurahan</option>
+                                        
                                                 @if ($item->kelurahan)
                                                     <option value="{{ $item->kelurahan_id }}" selected="selected">{{ $item->kelurahan->nama_kelurahan }}</option>
                                                 @endif
@@ -235,7 +239,68 @@
                                         @endif
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <div class="input_fields_wrap">
+                                    <div class="row" id="clone">
+                                        <div class="col-md-12">
+                                            <hr/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label >Keterangan</label>
+                                                <textarea name="interaksi_keterangan[]"  class="form-control"></textarea>
+                                            </div>
+        
+                                            <div class="form-group">
+                                                <label >Tanggal Interaksi/Kontak/Perjalanan</label>
+                                                <input type="date" class="form-control" name="interaksi_tanggal[]" placeholder="Tanggal Interaksi">
+                                            </div>
+                                    
+                                            <div class="form-group">
+                                                <label for="nama_lengkap">Lokasi</label>
+                                                <input type="text" class="form-control mb-2 lokasi" name="interaksi_lokasi[]"  placeholder="Lokasi">
+                                                <input type="text" class="form-control mb-2 kordinat_lokasi" name="interaksi_kordinat_lokasi[]"  placeholder="Kordinat Lokasi">
+                                                <button type="button" class="btn btn-primary pilih-lokasi" data-toggle="modal" data-target="#pilihLokasi" type="button">Pilih Lokasi...</button>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Provinsi</label>
+                                                <select name="interaksi_provinsi_id[]"  class="form-control interaksi_provinsi_id select2">
+                                                    @foreach ($provinsis as $id => $name)
+                                                        <option value="{{ $id }}">{{ $name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label >Kota</label>
+                                                <select name="interaksi_kota_id[]"  class="form-control interaksi_kota_id ajax" data-url="kota">
+                                                    
+                                                </select>
+                                            </div>
+                            
+                                            <div class="form-group">
+                                                <label >Kecamatan</label>
+                                                <select name="interaksi_kecamatan_id[]"  class="form-control interaksi_kecamatan_id ajax" data-url="kecamatan">
+                                                    
+                                                </select>
+                                            </div>
+                            
+                                            <div class="form-group">
+                                                <label >Kelurahan</label>
+                                                <select name="interaksi_kelurahan_id[]"  class="form-control interaksi_kelurahan_id ajax" data-url="kelurahan">
+                                                   
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="action col-md-12">
+                                            <button  class="add_field_button btn btn-info active" type="button">Add More Field</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            @endforelse
                         </div>
                     </div>
                     

@@ -27,6 +27,9 @@
             <thead>
                 <tr>
                     <th>
+                        No
+                    </th>
+                    <th>
                         Nama
                     </th>
                     <th>
@@ -44,6 +47,9 @@
                 @foreach ($datas as $data)
                     <tr>
                         <td>
+                            {{ $data->no }}
+                        </td>
+                        <td>
                             {{ $data->nama_lengkap }}
                         </td>
                         <td>
@@ -58,6 +64,9 @@
                                 <input type="hidden" name="_method" value="DELETE">
                                 <a href="{{ route('admin.pasien.edit',$data->id) }}" class="btn btn-sm btn-warning">
                                     Edit
+                                </a>
+                                <a href="{{ route('admin.pasien.show',$data->id) }}" class="btn btn-sm btn-info">
+                                    Detail
                                 </a>
                                 <button class="btn btn-sm btn-danger" type="submit">
                                     Delete

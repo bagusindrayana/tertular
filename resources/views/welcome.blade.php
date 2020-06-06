@@ -196,6 +196,7 @@
                 });
 
                 map.on('click', 'provinsi-layer', function(e) {
+                    console.log(e)
                     const htmls = `
                         <strong>${e.features[0].properties.nama_provinsi}</strong>
                         <br/>
@@ -223,6 +224,7 @@
                 });
 
                 map.on('click', 'kota-layer', function(e) {
+                    console.log(e)
                     const htmls = `
                         <strong>${e.features[0].properties.nama_kota}</strong>
                         <br/>

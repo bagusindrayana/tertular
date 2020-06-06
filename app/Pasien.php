@@ -26,7 +26,7 @@ class Pasien extends Model
         return $this->belongsTo(Kota::class,'kota_id');
     }
 
-    public function porvinsi()
+    public function provinsi()
     {
         return $this->belongsTo(Provinsi::class,'provinsi_id');
     }
@@ -39,5 +39,33 @@ class Pasien extends Model
     public function interaksis()
     {
         return $this->hasMany(Interaksi::class,'pasien_id');
+    }
+
+    public function getInteraksiGeojsonAttribute()
+    {
+        $interaksis = $this->interaksis()->get();
+        $data = [
+            "type"=>"FeatureCollection",
+            "features"=>[]
+        ];
+        foreach ($interaksis as $interaksi) {
+            if($interaksi->lokasi != null){
+                $kordinat = explode(",",$interaksi->kordinat_lokasi);
+                $data['features'][] = [
+                    "type"=>"Feature",
+                    "geometry"=>[
+                        "type"=>"Point",
+                        "coordinates"=>[(double)$kordinat[1],(double)$kordinat[0]]
+                    ],
+                    "properties"=>[
+                        "lokasi"=>$interaksi->lokasi,
+                        "keterangan"=>$interaksi->keterangan
+                    ]
+                ];
+            }
+            
+        }
+
+        return $data;
     }
 }

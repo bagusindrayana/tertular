@@ -7,6 +7,11 @@
         rel="stylesheet"
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
         type="text/css">
+    <style>
+        .select2 {
+            width:100%!important;
+        }       
+    </style>
 
 @endpush
 
@@ -168,21 +173,21 @@
                                             <div class="form-group">
                                                 <label >Kota</label>
                                                 <select name="interaksi_kota_id[]"  class="form-control interaksi_kota_id ajax" data-url="kota">
-                                                    <option selected="selected">Pilih Kota</option>
+                                                    
                                                 </select>
                                             </div>
                             
                                             <div class="form-group">
                                                 <label >Kecamatan</label>
                                                 <select name="interaksi_kecamatan_id[]"  class="form-control interaksi_kecamatan_id ajax" data-url="kecamatan">
-                                                    <option selected="selected">Pilih Kecamatan</option>
+                                                    
                                                 </select>
                                             </div>
                             
                                             <div class="form-group">
                                                 <label >Kelurahan</label>
                                                 <select name="interaksi_kelurahan_id[]"  class="form-control interaksi_kelurahan_id ajax" data-url="kelurahan">
-                                                    <option selected="selected">Pilih Kelurahan</option>
+                                                   
                                                 </select>
                                             </div>
                                         </div>
