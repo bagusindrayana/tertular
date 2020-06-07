@@ -61,6 +61,11 @@ class Pasien extends Model
         return $this->hasMany(Interaksi::class,'pasien_id');
     }
 
+    public function statuses()
+    {
+        return $this->hasMany(PasiesnSatus::class,'pasien_id');
+    }
+
     public function getInteraksiGeojsonAttribute()
     {
         $interaksis = $this->interaksis()->get();
