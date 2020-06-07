@@ -43,11 +43,6 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    {{-- <div class="form-group">
-                        <label for="no">Nomor</label>
-                        <input type="text" class="form-control" name="no" id="no" required placeholder="Nomor" value="{{ old('no',$pasien->no) }}">
-                    </div> --}}
-                    
                     <div class="form-group">
                         <label for="nama_lengkap">Nama Lengkap</label>
                         <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required placeholder="Nama lengkap" value="{{ old('nama_lengkap',$pasien->nama_lengkap) }}">
@@ -68,7 +63,11 @@
         
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <textarea name="alamat" id="alamat"  class="form-control">{{ old('alamat',$pasien->alamat) }}</textarea>
+                        <textarea name="alamat" id="alamat"  class="form-control" placeholder="Alamat">{{ old('alamat',$pasien->alamat) }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan</label>
+                        <textarea name="keterangan" id="keterangan"  class="form-control" placeholder="Keterangan">{{ old('keterangan',$pasien->keterangan) }}</textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -148,17 +147,73 @@
 
 
                 </div>
+                
+            </div>
+
+            <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="kelurahan_id">Lokasi Dinyatakan Positif/Reaktif</label>
+                        <label >Lokasi Dinyatakan Positif/Reaktif</label>
                         <input type="text" name="lokasi" class="form-control mb-2 lokasi" id="lokasi" placeholder="Lokasi" value="{{ old('lokasi',$pasien->lokasi) }}">
-                        <input type="text" name="kordinat_lokasi" class="form-control mb-2 kordinat_lokasi" id="kordinat_lokasi" placeholder="Kordinat Lokasi" value="{{ old('kordinat_lokasi',$pasien->kordinat_lokasi) }}">
+                        <input type="text" name="koordinat_lokasi" class="form-control mb-2 koordinat_lokasi" id="koordinat_lokasi" placeholder="Kordinat Lokasi" value="{{ old('koordinat_lokasi',$pasien->koordinat_lokasi) }}">
                         <button type="button" class="btn btn-primary pilih-lokasi" data-toggle="modal" data-target="#pilihLokasi" type="button">Pilih Lokasi...</button>
-                
+            
                     </div>
-        
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="lokasi_provinsi_id">Provinsi</label>
+                        <select name="lokasi_provinsi_id" id="lokasi_provinsi_id" class="form-control select2 provinsi_id">
+                            @foreach ($provinsis as $id => $name)
+                                <option value="{{ $id }}" @if (old('provinsi_id',$pasien->lokasi_provinsi_id) == $id)
+                                    selected
+                                @endif>{{ $name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lokasi_kota_id">Kota</label>
+                        <select name="lokasi_kota_id" id="lokasi_kota_id" class="form-control select2-kota kota_id">
+                            @if ($pasien->lokasi_kota)
+                                <option value="{{ $pasien->lokasi_kota_id }}" selected="selected">{{ $pasien->lokasi_kota->nama_kota }}</option>
+                            @endif
+                        </select>
+                    </div>
                     
-        
+                    <div class="form-group">
+                        <label for="lokasi_tanggal">Tanggal</label>
+                        <input type="date" class="form-control" name="lokasi_tanggal" id="lokasi_tanggal" required placeholder="Tanggal" value="{{ old('lokasi_tanggal') }}">
+                    </div>
+                    
+                </div>
+                <div class="col-md-6">
+                    
+
+                    <div class="form-group">
+                        <label for="lokasi_kecamatan_id">Kecamatan</label>
+                        <select name="lokasi_kecamatan_id" id="lokasi_kecamatan_id" class="form-control select2-kecamatan kecamatan_id">
+                            @if ($pasien->lokasi_kota)
+                                <option value="{{ $pasien->lokasi_kecamatan_id }}" selected="selected">{{ $pasien->lokasi_kecamatan->nama_kecamatan }}</option>
+                            @endif
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lokasi_kelurahan_id">Kelurahan</label>
+                        <select name="lokasi_kelurahan_id" id="lokasi_kelurahan_id" class="form-control select2-kelurahan kelurahan_id">
+                            @if ($pasien->lokasi_kelurahan)
+                                <option value="{{ $pasien->lokasi_kelurahan_id }}" selected="selected">{{ $pasien->lokasi_kelurahan->nama_kelurahan }}</option>
+                            @endif
+                        </select>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="" class="text-danger"><strong>Riwayat Kontak/Interaksi/Perjalanan</strong></label>
                         <div class="input_fields_wrap">
@@ -183,7 +238,7 @@
                                         <div class="form-group">
                                             <label >Lokasi</label>
                                             <input type="text" class="form-control mb-2 lokasi" name="interaksi_lokasi[]"  placeholder="Lokasi" value="{{ $item->lokasi }}">
-                                            <input type="text" class="form-control mb-2 kordinat_lokasi" name="interaksi_kordinat_lokasi[]"  placeholder="Kordinat Lokasi" value="{{ $item->kordinat_lokasi }}">
+                                            <input type="text" class="form-control mb-2 koordinat_lokasi" name="interaksi_koordinat_lokasi[]"  placeholder="Kordinat Lokasi" value="{{ $item->koordinat_lokasi }}">
                                             <button type="button" class="btn btn-primary pilih-lokasi" data-toggle="modal" data-target="#pilihLokasi" type="button">Pilih Lokasi...</button>
                                         </div>
                                         
@@ -240,65 +295,63 @@
                                     </div>
                                 </div>
                             @empty
-                                <div class="input_fields_wrap">
-                                    <div class="row" id="clone">
-                                        <div class="col-md-12">
-                                            <hr/>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label >Keterangan</label>
-                                                <textarea name="interaksi_keterangan[]"  class="form-control"></textarea>
-                                            </div>
-        
-                                            <div class="form-group">
-                                                <label >Tanggal Interaksi/Kontak/Perjalanan</label>
-                                                <input type="date" class="form-control" name="interaksi_tanggal[]" placeholder="Tanggal Interaksi">
-                                            </div>
+                            <div class="row" id="clone">
+                                <div class="col-md-12">
+                                    <hr/>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label >Keterangan</label>
+                                        <textarea name="interaksi_keterangan[]"  class="form-control" placeholder="Keterangan"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label >Tanggal Interaksi/Kontak/Perjalanan</label>
+                                        <input type="date" class="form-control" name="interaksi_tanggal[]" placeholder="Tanggal Interaksi">
+                                    </div>
+                            
+                                    <div class="form-group">
+                                        <label for="nama_lengkap">Lokasi</label>
+                                        <input type="text" class="form-control mb-2 lokasi" name="interaksi_lokasi[]"  placeholder="Lokasi">
+                                        <input type="text" class="form-control mb-2 koordinat_lokasi" name="interaksi_koordinat_lokasi[]"  placeholder="Kordinat Lokasi">
+                                        <button type="button" class="btn btn-primary pilih-lokasi" data-toggle="modal" data-target="#pilihLokasi" type="button">Pilih Lokasi...</button>
+                                    </div>
                                     
-                                            <div class="form-group">
-                                                <label for="nama_lengkap">Lokasi</label>
-                                                <input type="text" class="form-control mb-2 lokasi" name="interaksi_lokasi[]"  placeholder="Lokasi">
-                                                <input type="text" class="form-control mb-2 kordinat_lokasi" name="interaksi_kordinat_lokasi[]"  placeholder="Kordinat Lokasi">
-                                                <button type="button" class="btn btn-primary pilih-lokasi" data-toggle="modal" data-target="#pilihLokasi" type="button">Pilih Lokasi...</button>
-                                            </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Provinsi</label>
+                                        <select name="interaksi_provinsi_id[]"  class="form-control interaksi_provinsi_id select2">
+                                            @foreach ($provinsis as $id => $name)
+                                                <option value="{{ $id }}">{{ $name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Kota</label>
+                                        <select name="interaksi_kota_id[]"  class="form-control interaksi_kota_id ajax" data-url="kota">
                                             
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="">Provinsi</label>
-                                                <select name="interaksi_provinsi_id[]"  class="form-control interaksi_provinsi_id select2">
-                                                    @foreach ($provinsis as $id => $name)
-                                                        <option value="{{ $id }}">{{ $name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label >Kota</label>
-                                                <select name="interaksi_kota_id[]"  class="form-control interaksi_kota_id ajax" data-url="kota">
-                                                    
-                                                </select>
-                                            </div>
-                            
-                                            <div class="form-group">
-                                                <label >Kecamatan</label>
-                                                <select name="interaksi_kecamatan_id[]"  class="form-control interaksi_kecamatan_id ajax" data-url="kecamatan">
-                                                    
-                                                </select>
-                                            </div>
-                            
-                                            <div class="form-group">
-                                                <label >Kelurahan</label>
-                                                <select name="interaksi_kelurahan_id[]"  class="form-control interaksi_kelurahan_id ajax" data-url="kelurahan">
-                                                   
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="action col-md-12">
-                                            <button  class="add_field_button btn btn-info active" type="button">Add More Field</button>
-                                        </div>
+                                        </select>
+                                    </div>
+                    
+                                    <div class="form-group">
+                                        <label >Kecamatan</label>
+                                        <select name="interaksi_kecamatan_id[]"  class="form-control interaksi_kecamatan_id ajax" data-url="kecamatan">
+                                            
+                                        </select>
+                                    </div>
+                    
+                                    <div class="form-group">
+                                        <label >Kelurahan</label>
+                                        <select name="interaksi_kelurahan_id[]"  class="form-control interaksi_kelurahan_id ajax" data-url="kelurahan">
+                                           
+                                        </select>
                                     </div>
                                 </div>
+                                <div class="action col-md-12">
+                                    <button  class="add_field_button btn btn-info active" type="button">Add More Field</button>
+                                </div>
+                            </div>
                                 
                             @endforelse
                         </div>
@@ -353,9 +406,11 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
     <script src="{{ url('admin/js/admin.js') }}"></script>
     <script>
-        base_url = `{{ url('/') }}`
-        mapboxToken = `{{ env('MAPBOX_TOKEN') }}`;
-        geocodeToken = `{{ env('GEOCODE_TOKEN') }}`;
-        initPasienFeature(base_url,mapboxToken,geocodeToken);
+        $(document).ready(function(){
+            base_url = `{{ url('/') }}`
+            mapboxToken = `{{ env('MAPBOX_TOKEN') }}`;
+            geocodeToken = `{{ env('GEOCODE_TOKEN') }}`;
+            initPasienFeature(base_url,mapboxToken,geocodeToken);
+        })
     </script>
 @endpush

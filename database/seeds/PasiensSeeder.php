@@ -542,6 +542,10 @@ class PasiensSeeder extends Seeder
                 'kelurahan_id'=>$kelurahan->id,
                 'status'=>$item['status'],
                 'tanggal_positif'=>$item['tanggal_positif'],
+                'lokasi_provinsi_id'=>64,
+                'lokasi_kota_id'=>$kota->id,
+                'lokasi_kecamatan_id'=>$kecamatan->id,
+                'lokasi_kelurahan_id'=>$kelurahan->id,
                 'created_at'=>date('Y-m-d H:i:s')
             ];
             

@@ -19,4 +19,9 @@ class Kota extends Model
     {
        return $this->hasMany(Pasien::class,'kota_id');
     }
+
+    public function lokasi_pasiens()
+    {
+       return $this->hasMany(Pasien::class,'lokasi_kota_id');
+    }
 }

@@ -44,11 +44,6 @@
                 
                     <div class="row">
                         <div class="col-md-6">
-                            {{-- <div class="form-group">
-                                <label for="no">Nomor</label>
-                                <input type="text" class="form-control" name="no" id="no" required placeholder="Nomor" value="{{ old('no') }}">
-                            </div> --}}
-                        
                             <div class="form-group">
                                 <label for="nama_lengkap">Nama Lengkap</label>
                                 <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required placeholder="Nama lengkap" value="{{ old('nama_lengkap') }}">
@@ -69,13 +64,18 @@
 
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
-                                <textarea name="alamat" id="alamat"  class="form-control"></textarea>
+                                <textarea name="alamat" id="alamat"  class="form-control" placeholder="Alamat">{{ old('alamat') }}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="keterangan">Keterangan</label>
+                                <textarea name="keterangan" id="keterangan"  class="form-control" placeholder="Keterangan">{{ old('keterangan') }}</textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="provinsi_id">Provinsi</label>
-                                <select name="provinsi_id" id="provinsi_id" class="form-control select2">
+                                <select name="provinsi_id" id="provinsi_id" class="form-control select2 provinsi_id">
                                     @foreach ($provinsis as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
                                     @endforeach
@@ -84,21 +84,21 @@
         
                             <div class="form-group">
                                 <label for="kota_id">Kota</label>
-                                <select name="kota_id" id="kota_id" class="form-control select2-kota">
+                                <select name="kota_id" id="kota_id" class="form-control select2-kota kota_id">
                                 
                                 </select>
                             </div>
         
                             <div class="form-group">
                                 <label for="kecamatan_id">Kecamatan</label>
-                                <select name="kecamatan_id" id="kecamatan_id" class="form-control select2-kecamatan">
+                                <select name="kecamatan_id" id="kecamatan_id" class="form-control select2-kecamatan kecamatan_id">
                                 
                                 </select>
                             </div>
         
                             <div class="form-group">
                                 <label for="kelurahan_id">Kelurahan</label>
-                                <select name="kelurahan_id" id="kelurahan_id" class="form-control select2-kelurahan">
+                                <select name="kelurahan_id" id="kelurahan_id" class="form-control select2-kelurahan kelurahan_id">
                                 
                                 </select>
                             </div>
@@ -125,15 +125,65 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
 
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label >Lokasi Dinyatakan Positif/Reaktif</label>
                                 <input type="text" name="lokasi" class="form-control mb-2 lokasi" id="lokasi" placeholder="Lokasi">
-                                <input type="text" name="kordinat_lokasi" class="form-control mb-2 kordinat_lokasi" id="kordinat_lokasi" placeholder="Kordinat Lokasi">
+                                <input type="text" name="koordinat_lokasi" class="form-control mb-2 koordinat_lokasi" id="koordinat_lokasi" placeholder="Kordinat Lokasi">
                                 <button type="button" class="btn btn-primary pilih-lokasi" data-toggle="modal" data-target="#pilihLokasi" type="button">Pilih Lokasi...</button>
                     
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lokasi_provinsi_id">Provinsi</label>
+                                <select name="lokasi_provinsi_id" id="lokasi_provinsi_id" class="form-control select2 provinsi_id">
+                                    @foreach ($provinsis as $id => $name)
+                                        <option value="{{ $id }}">{{ $name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="lokasi_kota_id">Kota</label>
+                                <select name="lokasi_kota_id" id="lokasi_kota_id" class="form-control select2-kota kota_id">
+                                
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lokasi_tanggal">Tanggal</label>
+                                <input type="date" class="form-control" name="lokasi_tanggal" id="lokasi_tanggal" required placeholder="Tanggal" value="{{ old('lokasi_tanggal') }}">
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            
+        
+                            <div class="form-group">
+                                <label for="lokasi_kecamatan_id">Kecamatan</label>
+                                <select name="lokasi_kecamatan_id" id="lokasi_kecamatan_id" class="form-control select2-kecamatan kecamatan_id">
+                                
+                                </select>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="lokasi_kelurahan_id">Kelurahan</label>
+                                <select name="lokasi_kelurahan_id" id="lokasi_kelurahan_id" class="form-control select2-kelurahan kelurahan_id">
+                                
+                                </select>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+
+                    <div class="row  mt-4">
+                        <div class="col-md-12">
+                            
 
                             <div class="form-group">
                                 <label for="" class="text-danger"><strong>Kontak/Interaksi/Perjalanan</strong></label>
@@ -156,7 +206,7 @@
                                             <div class="form-group">
                                                 <label for="nama_lengkap">Lokasi</label>
                                                 <input type="text" class="form-control mb-2 lokasi" name="interaksi_lokasi[]"  placeholder="Lokasi">
-                                                <input type="text" class="form-control mb-2 kordinat_lokasi" name="interaksi_kordinat_lokasi[]"  placeholder="Kordinat Lokasi">
+                                                <input type="text" class="form-control mb-2 koordinat_lokasi" name="interaksi_koordinat_lokasi[]"  placeholder="Kordinat Lokasi">
                                                 <button type="button" class="btn btn-primary pilih-lokasi" data-toggle="modal" data-target="#pilihLokasi" type="button">Pilih Lokasi...</button>
                                             </div>
                                             
@@ -201,15 +251,6 @@
                         </div>
                     </div>
 
-                    
-
-
-                    
-                    
-
-                    
-                
-
                     <div class="form-group">
                         <button class="btn btn-success" nama_pasien="status" value="Publish">
                             Save
@@ -248,10 +289,12 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
     <script src="{{ url('admin/js/admin.js') }}"></script>
     <script>
-        base_url = `{{ url('/') }}`
-        mapboxToken = `{{ env('MAPBOX_TOKEN') }}`;
-        geocodeToken = `{{ env('GEOCODE_TOKEN') }}`;
-        initPasienFeature(base_url,mapboxToken,geocodeToken);
+        $(document).ready(function(){
+            base_url = `{{ url('/') }}`
+            mapboxToken = `{{ env('MAPBOX_TOKEN') }}`;
+            geocodeToken = `{{ env('GEOCODE_TOKEN') }}`;
+            initPasienFeature(base_url,mapboxToken,geocodeToken);
+        })
     </script>
 @endpush
 

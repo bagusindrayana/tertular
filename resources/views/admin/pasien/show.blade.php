@@ -31,6 +31,11 @@
             <div class="row">
                 <div class="col-md-6">
                     <ul class="list-group">
+                        <li class="list-group-item">
+                            <h4>
+                                Data Diri Pasien
+                            </h4>
+                        </li>
                         <li class="list-group-item"><strong>No : </strong>{{ $pasien->no }}</li>
                         <li class="list-group-item"><strong>Nama Lengkap : </strong>{{ $pasien->nama_lengkap }}</li>
                         <li class="list-group-item"><strong>Alamat : </strong>{{ $pasien->alamat }}</li>
@@ -47,11 +52,10 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             <h4>
-                                Lokasi Di Nyatakan Positif/Reactif
+                                Lokasi Di Nyatakan Positif/Reaktif
                             </h4>
                         </li>
                         <li class="list-group-item"><strong>Lokasi : </strong>{{ $pasien->lokasi }}</li>
-                        <li class="list-group-item"><strong>Kordinat : </strong>{{ $pasien->kordinat_lokasi }}</li>
                         <li class="list-group-item">
                             <div id="map" style="width: 100%; height: 225px;"></div>
                         </li>
@@ -59,7 +63,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-md-12">
                     <ul class="list-group">
                         <li class="list-group-item">
@@ -84,20 +88,42 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script> --}}
     <script>
         mapboxgl.accessToken = `{{ env("MAPBOX_TOKEN") }}`;
+        //map
+
+        const raw = (`{{ $pasien->koordinat_lokasi }}`).split(',')
         var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [raw[1],raw[0]],
+            zoom: 10
+        });
+
+        map.on('load', function() {
+            
+            const lngLat = {
+                lng:raw[1],
+                lat:raw[0]
+            }
+            marker = new mapboxgl.Marker()
+            .setLngLat(lngLat)
+            .addTo(map);
+        });
+
+        //interaksi
+        var mapInteraksi = new mapboxgl.Map({
             container: 'map_interaksi',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [116.924, -0.331],
             zoom: 3
         });
 
-        map.on('load', function() {
-            map.addSource('interaksis', {
+        mapInteraksi.on('load', function() {
+            mapInteraksi.addSource('interaksis', {
                 'type': 'geojson',
                 'data': <?=json_encode($pasien->interaksi_geojson);?>
             });
 
-            map.addLayer({
+            mapInteraksi.addLayer({
                 'id': 'interaksis',
                 'type': 'circle',
                 'source': 'interaksis',

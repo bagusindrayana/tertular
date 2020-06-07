@@ -58,7 +58,8 @@ class PasienController extends Controller
         $request->validate([
             'nama_lengkap'=>'required|string|max:100',
             'jenis_kelamin'=>'required',
-            'alamat'=>'requried'
+            'alamat'=>'required',
+            'tanggal_lahir'=>'required'
         ]);
         
         $no = '00000001';
@@ -73,13 +74,19 @@ class PasienController extends Controller
             'nama_lengkap'=>$request->nama_lengkap,
             'jenis_kelamin'=>$request->jenis_kelamin,
             'alamat'=>$request->alamat,
+            'keterangan'=>$request->keterangan,
             'tanggal_lahir'=>$request->tanggal_lahir,
             'provinsi_id'=>$request->provinsi_id,
             'kota_id'=>$request->kota_id,
             'kecamatan_id'=>$request->kecamatan_id,
             'kelurahan_id'=>$request->kelurahan_id,
             'lokasi'=>$request->lokasi,
-            'kordinat_lokasi'=>$request->kordinat_lokasi,
+            'koordinat_lokasi'=>$request->koordinat_lokasi,
+            'lokasi_provinsi_id'=>$request->provinsi_id,
+            'lokasi_kota_id'=>$request->kota_id,
+            'lokasi_kecamatan_id'=>$request->kecamatan_id,
+            'lokasi_kelurahan_id'=>$request->kelurahan_id,
+            'lokasi_tanggal'=>$request->lokasi_tanggal,
             'klaster_id'=>$request->klaster_id,
             'status'=>$request->status
         ]);
@@ -88,19 +95,19 @@ class PasienController extends Controller
             $keterangan = $request->interaksi_keterangan[$i];
             $tanggal = $request->interaksi_tanggal[$i];
             $lokasi = $request->interaksi_lokasi[$i];
-            $kordinat = $request->interaksi_kordinat_lokasi[$i];
+            $koordinat = $request->interaksi_koordinat_lokasi[$i];
             $provinsi = $request->interaksi_provinsi_id[$i];
             $kota = $request->interaksi_kota_id[$i];
             $kecamatan = $request->interaksi_kecamatan_id[$i];
             $kelurahan = $request->interaksi_kelurahan_id[$i];
 
-          
+        
             Interaksi::create([
                 'pasien_id'=>$pasien->id,
                 'keterangan'=>$keterangan,
                 'tanggal_interaksi'=>$tanggal,
                 'lokasi'=>$lokasi,
-                'kordinat_lokasi'=>$kordinat,
+                'koordinat_lokasi'=>$koordinat,
                 'provinsi_id'=>$provinsi,
                 'kota_id'=>$kota,
                 'kecamatan_id'=>$kecamatan,
@@ -150,20 +157,26 @@ class PasienController extends Controller
         $request->validate([
             'nama_lengkap'=>'required|string|max:100',
             'jenis_kelamin'=>'required',
-            'alamat'=>'requried'
+            'alamat'=>'required'
         ]);
 
         $pasien->update([
             'nama_lengkap'=>$request->nama_lengkap,
             'jenis_kelamin'=>$request->jenis_kelamin,
             'alamat'=>$request->alamat,
+            'keterangan'=>$request->keterangan,
             'tanggal_lahir'=>$request->tanggal_lahir,
             'provinsi_id'=>$request->provinsi_id,
             'kota_id'=>$request->kota_id,
             'kecamatan_id'=>$request->kecamatan_id,
             'kelurahan_id'=>$request->kelurahan_id,
             'lokasi'=>$request->lokasi,
-            'kordinat_lokasi'=>$request->kordinat_lokasi,
+            'koordinat_lokasi'=>$request->koordinat_lokasi,
+            'lokasi_provinsi_id'=>$request->provinsi_id,
+            'lokasi_kota_id'=>$request->kota_id,
+            'lokasi_kecamatan_id'=>$request->kecamatan_id,
+            'lokasi_kelurahan_id'=>$request->kelurahan_id,
+            'lokasi_tanggal'=>$request->lokasi_tanggal,
             'klaster_id'=>$request->klaster_id,
             'status'=>$request->status
         ]);
@@ -171,8 +184,9 @@ class PasienController extends Controller
         Interaksi::where('pasien_id',$pasien->id)->delete();
         for ($i=0; $i < count($request->interaksi_keterangan); $i++) { 
             $keterangan = $request->interaksi_keterangan[$i];
+            $tanggal = $request->interaksi_tanggal[$i];
             $lokasi = $request->interaksi_lokasi[$i];
-            $kordinat = $request->interaksi_kordinat_lokasi[$i];
+            $koordinat = $request->interaksi_koordinat_lokasi[$i];
             $provinsi = $request->interaksi_provinsi_id[$i];
             $kota = $request->interaksi_kota_id[$i];
             $kecamatan = $request->interaksi_kecamatan_id[$i];
@@ -182,8 +196,9 @@ class PasienController extends Controller
             Interaksi::create([
                 'pasien_id'=>$pasien->id,
                 'keterangan'=>$keterangan,
+                'tanggal_interaksi'=>$tanggal,
                 'lokasi'=>$lokasi,
-                'kordinat_lokasi'=>$kordinat,
+                'koordinat_lokasi'=>$koordinat,
                 'provinsi_id'=>$provinsi,
                 'kota_id'=>$kota,
                 'kecamatan_id'=>$kecamatan,

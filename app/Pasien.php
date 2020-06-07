@@ -31,6 +31,26 @@ class Pasien extends Model
         return $this->belongsTo(Provinsi::class,'provinsi_id');
     }
 
+    public function lokasi_kelurahan()
+    {
+        return $this->belongsTo(Kelurahan::class,'kelurahan_id');
+    }
+
+    public function lokasi_kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class,'kecamatan_id');
+    }
+
+    public function lokasi_kota()
+    {
+        return $this->belongsTo(Kota::class,'kota_id');
+    }
+
+    public function lokasi_provinsi()
+    {
+        return $this->belongsTo(Provinsi::class,'provinsi_id');
+    }
+
     public function klaster()
     {
         return $this->belongsTo(Klaster::class);
@@ -50,12 +70,12 @@ class Pasien extends Model
         ];
         foreach ($interaksis as $interaksi) {
             if($interaksi->lokasi != null){
-                $kordinat = explode(",",$interaksi->kordinat_lokasi);
+                $koordinat = explode(",",$interaksi->koordinat_lokasi);
                 $data['features'][] = [
                     "type"=>"Feature",
                     "geometry"=>[
                         "type"=>"Point",
-                        "coordinates"=>[(double)$kordinat[1],(double)$kordinat[0]]
+                        "coordinates"=>[(double)$koordinat[1],(double)$koordinat[0]]
                     ],
                     "properties"=>[
                         "lokasi"=>$interaksi->lokasi,
