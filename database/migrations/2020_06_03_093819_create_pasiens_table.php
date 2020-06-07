@@ -32,7 +32,7 @@ class CreatePasiensTable extends Migration
             $table->unsignedBigInteger('lokasi_kota_id');
             $table->unsignedBigInteger('lokasi_provinsi_id');
             $table->date('lokasi_tanggal')->nullable();
-            $table->string('status',50);
+            // $table->string('status',50);
             $table->timestamps();
             $table->softDeletes();
             $table->index('provinsi_id');
