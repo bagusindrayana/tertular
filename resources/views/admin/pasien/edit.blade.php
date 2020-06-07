@@ -172,7 +172,7 @@
                     
                     <div class="form-group">
                         <label for="lokasi_tanggal">Tanggal</label>
-                        <input type="date" class="form-control" name="lokasi_tanggal" id="lokasi_tanggal" required placeholder="Tanggal" value="{{ old('lokasi_tanggal') }}">
+                        <input type="date" class="form-control" name="lokasi_tanggal" id="lokasi_tanggal" required placeholder="Tanggal" value="{{ old('lokasi_tanggal',$pasien->lokasi_tanggal) }}">
                     </div>
                     
                 </div>
@@ -507,6 +507,27 @@
             mapboxToken = `{{ env('MAPBOX_TOKEN') }}`;
             geocodeToken = `{{ env('GEOCODE_TOKEN') }}`;
             initPasienFeature(base_url,mapboxToken,geocodeToken);
+            $(document).on('click','.add_field_button_status',function(){
+                $(".input_fields_wrap_status").find("select").select2("destroy")
+                let el = $("#clone-status").clone()
+                $(".input_fields_wrap_status").append(el);
+                el.addClass("mt-4")
+                el.removeAttr('id')
+                el.find('input').val('');
+                el.find('textarea').val('')
+                el.find('.action').html(`<button  class="remove_field_status btn btn-danger active" type="button">Delete</button>`)
+                $(".input_fields_wrap_status").append(el);
+                $(".input_fields_wrap_status").find("select.select2").select2({
+                    allowClear: true,
+                    placeholder: "Pilih Status",
+                });
+                $(el).find("select").val(null).trigger('change');
+            });
+
+            $(document).on("click", ".remove_field_status", function(e) {
+                e.preventDefault();
+                $(this).closest('.row').remove();
+            })
         })
     </script>
 @endpush

@@ -6,6 +6,7 @@ use App\Interaksi;
 use App\Klaster;
 use App\Provinsi;
 use App\Pasien;
+use App\PasienStatus;
 use App\PasiesnSatus;
 use Illuminate\Http\Request;
 
@@ -92,10 +93,10 @@ class PasienController extends Controller
             // 'status'=>$request->status
         ]);
 
-        PasiesnSatus::create([
+        PasienStatus::create([
             'status'=>$request->status,
             'keterangan'=>$request->keterangan,
-            'tanggal_status'=>$request->lokasi_tanggal,
+            'keterangan_status'=>$request->lokasi_tanggal,
             'pasien_id'=>$pasien->id
         ]);
 
@@ -188,6 +189,17 @@ class PasienController extends Controller
             'klaster_id'=>$request->klaster_id,
             'status'=>$request->status
         ]);
+
+        PasienStatus::where('pasien_id',$pasien->id)->delete();
+
+        for ($i=0; $i < count($request->status); $i++) { 
+            PasienStatus::create([
+                'status'=>$request->status[$i],
+                'keterangan_status'=>$request->keterangan_status[$i],
+                'tanggal_status'=>$request->tanggal_status[$i],
+                'pasien_id'=>$pasien->id
+            ]);
+        }
         
         Interaksi::where('pasien_id',$pasien->id)->delete();
         for ($i=0; $i < count($request->interaksi_keterangan); $i++) { 
