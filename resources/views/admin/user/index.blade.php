@@ -47,9 +47,11 @@
                                 <a href="{{ route('admin.user.edit',$data->id) }}" class="btn btn-sm btn-warning">
                                     Edit
                                 </a>
-                                <button class="btn btn-sm btn-danger" type="submit">
-                                    Delete
-                                </button>
+                                @if (Auth::user()->id != $data->id)
+                                    <button class="btn btn-sm btn-danger" type="submit">
+                                        Delete
+                                    </button>
+                                @endif
                             </form>
                         </td>
                     </tr>
