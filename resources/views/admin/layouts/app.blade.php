@@ -60,34 +60,39 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <div class="sb-sidenav-menu-heading">Master Data</div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseWilayah" aria-expanded="false" aria-controls="collapseWilayah"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-map"></i></div>
-                                Wialayah
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                            ></a>
-                            <div class="collapse" id="collapseWilayah" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ route('admin.provinsi.index') }}">Provinsi</a>
-                                    <a class="nav-link" href="{{ route('admin.kota.index') }}">Kota</a>
-                                    <a class="nav-link" href="{{ route('admin.kecamatan.index') }}">Kecamatan</a>
-                                    <a class="nav-link" href="{{ route('admin.kelurahan.index') }}">Kelurahan</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link" href="{{ route('admin.klaster.index') }}">
-                                <div class="sb-nav-link-icon"><i class="fa fa-sign-in-alt"></i></div>
-                                Klaster
-                            </a>
+                            @if (Auth::user()->level == "Admin")
+                                <div class="sb-sidenav-menu-heading">Master Data</div>
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseWilayah" aria-expanded="false" aria-controls="collapseWilayah"
+                                    ><div class="sb-nav-link-icon"><i class="fas fa-map"></i></div>
+                                    Wialayah
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                                ></a>
+                                <div class="collapse" id="collapseWilayah" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="{{ route('admin.provinsi.index') }}">Provinsi</a>
+                                        <a class="nav-link" href="{{ route('admin.kota.index') }}">Kota</a>
+                                        <a class="nav-link" href="{{ route('admin.kecamatan.index') }}">Kecamatan</a>
+                                        <a class="nav-link" href="{{ route('admin.kelurahan.index') }}">Kelurahan</a>
+                                    </nav>
+                                </div>
+                                <a class="nav-link" href="{{ route('admin.klaster.index') }}">
+                                    <div class="sb-nav-link-icon"><i class="fa fa-sign-in-alt"></i></div>
+                                    Klaster
+                                </a>
+                            @endif
                             <div class="sb-sidenav-menu-heading">Main Data</div>
                             <a class="nav-link" href="{{ route('admin.pasien.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Pasien
                             </a>
-                            <div class="sb-sidenav-menu-heading">Setting</div>
-                            <a class="nav-link" href="{{ route('admin.user.index') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                                User
-                            </a>
+                            @if (Auth::user()->level == "Admin")
+                                <div class="sb-sidenav-menu-heading">Setting</div>
+                                <a class="nav-link" href="{{ route('admin.user.index') }}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                    User
+                                </a>
+                            @endif
+                            
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
