@@ -6,6 +6,7 @@ use App\Interaksi;
 use App\Klaster;
 use App\Provinsi;
 use App\Pasien;
+use App\PasiesnSatus;
 use Illuminate\Http\Request;
 
 class PasienController extends Controller
@@ -88,7 +89,14 @@ class PasienController extends Controller
             'lokasi_kelurahan_id'=>$request->kelurahan_id,
             'lokasi_tanggal'=>$request->lokasi_tanggal,
             'klaster_id'=>$request->klaster_id,
-            'status'=>$request->status
+            // 'status'=>$request->status
+        ]);
+
+        PasiesnSatus::create([
+            'status'=>$request->status,
+            'keterangan'=>$request->keterangan,
+            'tanggal_status'=>$request->lokasi_tanggal,
+            'pasien_id'=>$pasien->id
         ]);
 
         for ($i=0; $i < count($request->interaksi_keterangan); $i++) { 

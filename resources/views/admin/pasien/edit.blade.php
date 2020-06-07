@@ -109,30 +109,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select name="status" id="status" class="form-control select2">
-                            <option value="Suspect">Suspect</option>
-                            <option value="ODP" @if (old('status',$pasien->status) == "ODP (Orang Dalam Pemantauan)")
-                                selected
-                            @endif>ODP (Orang Dalam Pemantauan)</option>
-                            <option value="PDP" @if (old('status',$pasien->status) == "PDP (Pasien Dalam Pengawasan)")
-                                selected
-                            @endif>PDP (Pasien Dalam Pengawasan)</option>
-                            <option value="OTG" @if (old('status',$pasien->status) == "OTG (Orang Tanpa Gejala)")
-                                selected
-                            @endif>OTG (Orang Tanpa Gejala)</option>
-                            <option value="Positif" @if (old('status',$pasien->status) == "Positif")
-                                selected
-                            @endif>Positif</option>
-                            <option value="Sembuh" @if (old('status',$pasien->status) == "Sembuh")
-                                selected
-                            @endif>Sembuh</option>
-                            <option value="Meninggal" @if (old('status',$pasien->status) == "Meninggal")
-                                selected
-                            @endif>Meninggal</option>
-                        </select>
-                    </div>
+                    
         
                     <div class="form-group">
                         <label for="klaster_id">Klaster</label>
@@ -148,8 +125,20 @@
 
                 </div>
                 
-            </div>
+            </div> 
+        </div>
+    </div>
 
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="float-left">
+                <b>Lokasi Dinyatakan Positif/Reaktif</b>
+            </div>
+            <div class="float-right">
+                
+            </div>
+        </div>
+        <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -211,16 +200,130 @@
                     
                 </div>
             </div>
-            
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="float-left">
+                <label for="" class="text-danger"><strong>Perkembangan Status Pasien</strong></label>
+            </div>
+            <div class="float-right">
+                
+            </div>
+        </div>
+        <div class="card-body">
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="" class="text-danger"><strong>Riwayat Kontak/Interaksi/Perjalanan</strong></label>
+                        
+                        <div class="input_fields_wrap_status">
+                            @forelse ($pasien->statuses as $index => $item)
+                                <div class="row" @if ($index == 0)
+                                    id="clone-status"
+                                    @endif>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label >Status</label>
+                                            <select name="status[]" class="form-control select2">
+                                                <option value="Suspect" @if (old('status',$item->status) == "Suspect")
+                                                    selected
+                                                @endif>Suspect</option>
+                                                <option value="ODP" @if (old('status',$item->status) == "ODP (Orang Dalam Pemantauan)")
+                                                    selected
+                                                @endif>ODP (Orang Dalam Pemantauan)</option>
+                                                <option value="PDP" @if (old('status',$item->status) == "PDP (Pasien Dalam Pengawasan)")
+                                                    selected
+                                                @endif>PDP (Pasien Dalam Pengawasan)</option>
+                                                <option value="OTG" @if (old('status',$item->status) == "OTG (Orang Tanpa Gejala)")
+                                                    selected
+                                                @endif>OTG (Orang Tanpa Gejala)</option>
+                                                <option value="Positif" @if (old('status',$item->status) == "Positif")
+                                                    selected
+                                                @endif>Positif</option>
+                                                <option value="Sembuh" @if (old('status',$item->status) == "Sembuh")
+                                                    selected
+                                                @endif>Sembuh</option>
+                                                <option value="Meninggal" @if (old('status',$item->status) == "Meninggal")
+                                                    selected
+                                                @endif>Meninggal</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label >Tanggal</label>
+                                            <input type="date" class="form-control" name="tanggal_status[]" placeholder="Tanggal Status" value="{{ $item->tanggal_status }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label >Keterangan</label>
+                                            <textarea name="keterangan_status[]"  class="form-control" placeholder="Keterangan">{{ $item->keterangan_status }}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="action col-md-12">
+                                        @if ($index == 0)
+                                            <button  class="add_field_button_status btn btn-info active" type="button">Add More Field</button>
+                                        @else
+                                            <button  class="remove_field_status btn btn-danger active" type="button">Delete</button>
+                                        @endif
+                                    </div>
+                                    
+                                </div>
+                            @empty
+                                <div class="row" id="clone-status">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label >Status</label>
+                                            <select name="status[]" class="form-control select2">
+                                                <option value="Suspect">Suspect</option>
+                                                <option value="ODP" >ODP (Orang Dalam Pemantauan)</option>
+                                                <option value="PDP" >PDP (Pasien Dalam Pengawasan)</option>
+                                                <option value="OTG" >OTG (Orang Tanpa Gejala)</option>
+                                                <option value="Positif" >Positif</option>
+                                                <option value="Sembuh">Sembuh</option>
+                                                <option value="Meninggal" >Meninggal</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label >Tanggal</label>
+                                            <input type="date" class="form-control" name="tanggal_status[]" placeholder="Tanggal Status">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label >Keterangan</label>
+                                            <textarea name="keterangan_status[]"  class="form-control" placeholder="Keterangan"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="float-left">
+                <label for="" class="text-danger"><strong>Riwayat Kontak/Interaksi/Perjalanan</strong></label>
+            </div>
+            <div class="float-right">
+                
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        
                         <div class="input_fields_wrap">
                             @forelse ($pasien->interaksis as $index => $item)
                                 <div class="row" @if ($index == 0)
-                                id="clone"
-                                @endif>
+                                    id="clone"
+                                    @endif>
                                     <div class="col-md-12">
                                         <hr/>
                                     </div>
@@ -232,7 +335,7 @@
 
                                         <div class="form-group">
                                             <label >Tanggal Interaksi/Kontak/Perjalanan</label>
-                                            <input type="date" class="form-control" name="interaksi_tanggal[]" placeholder="Tanggal Interaksi">
+                                            <input type="date" class="form-control" name="interaksi_tanggal[]" placeholder="Tanggal Interaksi" value="{{ $item->tanggal_interaksi }}">
                                         </div>
                                 
                                         <div class="form-group">
@@ -295,63 +398,63 @@
                                     </div>
                                 </div>
                             @empty
-                            <div class="row" id="clone">
-                                <div class="col-md-12">
-                                    <hr/>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label >Keterangan</label>
-                                        <textarea name="interaksi_keterangan[]"  class="form-control" placeholder="Keterangan"></textarea>
+                                <div class="row" id="clone">
+                                    <div class="col-md-12">
+                                        <hr/>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label >Keterangan</label>
+                                            <textarea name="interaksi_keterangan[]"  class="form-control" placeholder="Keterangan"></textarea>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label >Tanggal Interaksi/Kontak/Perjalanan</label>
-                                        <input type="date" class="form-control" name="interaksi_tanggal[]" placeholder="Tanggal Interaksi">
+                                        <div class="form-group">
+                                            <label >Tanggal Interaksi/Kontak/Perjalanan</label>
+                                            <input type="date" class="form-control" name="interaksi_tanggal[]" placeholder="Tanggal Interaksi">
+                                        </div>
+                                
+                                        <div class="form-group">
+                                            <label for="nama_lengkap">Lokasi</label>
+                                            <input type="text" class="form-control mb-2 lokasi" name="interaksi_lokasi[]"  placeholder="Lokasi">
+                                            <input type="text" class="form-control mb-2 koordinat_lokasi" name="interaksi_koordinat_lokasi[]"  placeholder="Kordinat Lokasi">
+                                            <button type="button" class="btn btn-primary pilih-lokasi" data-toggle="modal" data-target="#pilihLokasi" type="button">Pilih Lokasi...</button>
+                                        </div>
+                                        
                                     </div>
-                            
-                                    <div class="form-group">
-                                        <label for="nama_lengkap">Lokasi</label>
-                                        <input type="text" class="form-control mb-2 lokasi" name="interaksi_lokasi[]"  placeholder="Lokasi">
-                                        <input type="text" class="form-control mb-2 koordinat_lokasi" name="interaksi_koordinat_lokasi[]"  placeholder="Kordinat Lokasi">
-                                        <button type="button" class="btn btn-primary pilih-lokasi" data-toggle="modal" data-target="#pilihLokasi" type="button">Pilih Lokasi...</button>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Provinsi</label>
-                                        <select name="interaksi_provinsi_id[]"  class="form-control interaksi_provinsi_id select2">
-                                            @foreach ($provinsis as $id => $name)
-                                                <option value="{{ $id }}">{{ $name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Kota</label>
-                                        <select name="interaksi_kota_id[]"  class="form-control interaksi_kota_id ajax" data-url="kota">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Provinsi</label>
+                                            <select name="interaksi_provinsi_id[]"  class="form-control interaksi_provinsi_id select2">
+                                                @foreach ($provinsis as $id => $name)
+                                                    <option value="{{ $id }}">{{ $name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label >Kota</label>
+                                            <select name="interaksi_kota_id[]"  class="form-control interaksi_kota_id ajax" data-url="kota">
+                                                
+                                            </select>
+                                        </div>
+                        
+                                        <div class="form-group">
+                                            <label >Kecamatan</label>
+                                            <select name="interaksi_kecamatan_id[]"  class="form-control interaksi_kecamatan_id ajax" data-url="kecamatan">
+                                                
+                                            </select>
+                                        </div>
+                        
+                                        <div class="form-group">
+                                            <label >Kelurahan</label>
+                                            <select name="interaksi_kelurahan_id[]"  class="form-control interaksi_kelurahan_id ajax" data-url="kelurahan">
                                             
-                                        </select>
+                                            </select>
+                                        </div>
                                     </div>
-                    
-                                    <div class="form-group">
-                                        <label >Kecamatan</label>
-                                        <select name="interaksi_kecamatan_id[]"  class="form-control interaksi_kecamatan_id ajax" data-url="kecamatan">
-                                            
-                                        </select>
-                                    </div>
-                    
-                                    <div class="form-group">
-                                        <label >Kelurahan</label>
-                                        <select name="interaksi_kelurahan_id[]"  class="form-control interaksi_kelurahan_id ajax" data-url="kelurahan">
-                                           
-                                        </select>
+                                    <div class="action col-md-12">
+                                        <button  class="add_field_button btn btn-info active" type="button">Add More Field</button>
                                     </div>
                                 </div>
-                                <div class="action col-md-12">
-                                    <button  class="add_field_button btn btn-info active" type="button">Add More Field</button>
-                                </div>
-                            </div>
                                 
                             @endforelse
                         </div>
@@ -365,13 +468,6 @@
                     </div>
                 </div>
             </div>
-            
-            
-
-            
-
-
-            
         </div>
     </div>
 </form>

@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             // KecamatansSeeder::class,
             // KelurahansSeeder::class,
             // KlastersSeeder::class,
-            PasiensSeeder::class
+            //PasiensSeeder::class,
+            PasienStatusesSeeder::class
         ]);
     }
 }
