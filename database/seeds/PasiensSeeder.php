@@ -524,7 +524,7 @@ class PasiensSeeder extends Seeder
         foreach ($data as $item) {
             
             $no = str_pad(++$no,8,"0",STR_PAD_LEFT);
-            $jenisKelamin = ($item['jenis_kelamin'] == 'male')?"Laki-Laki":"Premepuan";
+            $jenisKelamin = ($item['jenis_kelamin'] == 'male')?"Laki-Laki":"Perempuan";
             // $provinsi = Provinsi::all()->random();
             $kota = Kota::where('provinsi_id',64)->get()->random();
             $kecamatan = Kecamatan::where('kota_id',$kota->id)->get()->random();
