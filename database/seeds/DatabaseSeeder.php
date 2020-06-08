@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             // KlastersSeeder::class,
             // PasiensSeeder::class,
             // PasienStatusesSeeder::class
-            InteraksisSeeder::class
+            //InteraksisSeeder::class
+            UpdateLokasiPasienSeeder::class
         ]);
     }
 }

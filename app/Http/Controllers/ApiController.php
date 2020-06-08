@@ -277,7 +277,8 @@ class ApiController extends Controller
             ]
         ];
 
-        $pasiens = Pasien::whereNotNull('lokasi')->whereNotNull('koordinat_lokasi')->get();
+        $pasiens = Pasien::whereNotNull('koordinat_lokasi')->get();
+      
         foreach ($pasiens as $p) {
             $raw = explode(',',$p->koordinat_lokasi);
             $koordinat = [$raw[1],$raw[0]];
