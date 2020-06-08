@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             KelurahansSeeder::class,
             KlastersSeeder::class,
             PasiensSeeder::class,
-            PasienStatusesSeeder::class
+            PasienStatusesSeeder::class,
             InteraksisSeeder::class,
             UpdateLokasiPasienSeeder::class
         ]);
