@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -92,5 +93,20 @@ class Pasien extends Model
         }
 
         return $data;
+    }
+
+    public function getUmurAttribute()
+    {
+        # object oriented
+        $from = new DateTime($this->tanggal_lahir);
+        $to   = new DateTime('today');
+
+        $cek_status = $this->statuses()->where('status','Meninggal')->first();
+        if($cek_status){
+            $to   = new DateTime($cek_status->tanggal_status);
+            return $from->diff($to)->y;
+        }
+
+        return $from->diff($to)->y;
     }
 }

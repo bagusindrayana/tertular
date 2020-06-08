@@ -44,6 +44,7 @@
                         <li class="list-group-item"><strong>Kecamatan : </strong>{{ $pasien->kecamatan->nama_kecamatan ?? "Tidak Ada" }}</li>
                         <li class="list-group-item"><strong>Kelurahan : </strong>{{ $pasien->kelurahan->nama_kelurahan ?? "Tidak Ada" }}</li>
                         <li class="list-group-item"><strong>Status : </strong>{{ $pasien->status }}</li>
+                        <li class="list-group-item"><strong>Umur : </strong>{{ $pasien->umur }}</li>
                         <li class="list-group-item"><strong>Klaster : </strong>{{ $pasien->klaster->nama_klaster }}</li>
                     </ul>
                 </div>
@@ -55,9 +56,13 @@
                                 Lokasi Di Nyatakan Positif/Reaktif
                             </h4>
                         </li>
+                    
                         <li class="list-group-item"><strong>Lokasi : </strong>{{ $pasien->lokasi }}</li>
+                        <li class="list-group-item"><strong>Tanggal : </strong>{{ $pasien->lokasi_tanggal }}</li>
+                        <li class="list-group-item"><strong>Provinsi : </strong>{{ $pasien->provinsi->nama_provinsi }}</li>
+                        <li class="list-group-item"><strong>Kota : </strong>{{ $pasien->kota->nama_kota }}</li>
                         <li class="list-group-item">
-                            <div id="map" style="width: 100%; height: 225px;"></div>
+                            <div id="map" style="width: 100%; height: 250px;"></div>
                         </li>
                         
                     </ul>
@@ -74,6 +79,37 @@
                         
                         <li class="list-group-item">
                             <div id="map_interaksi" style="width: 100%; height: 400px;"></div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Lokasi
+                                        </th>
+                                        <th>
+                                            Keterangan
+                                        </th>
+                                        <th>
+                                            Tanggal
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($pasien->interaksis as $item)
+                                        <tr>
+                                            <td>
+                                                {{ $item->lokasi }}
+                                            </td>
+                                            <td>
+                                                {{ $item->keterangan }}
+                                            </td>
+                                            <td>
+                                                {{ $item->tanggal_interaksi }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+
+                            </table>
                         </li>
                     </ul>
                 </div>
@@ -87,56 +123,57 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script> --}}
     <script>
-        mapboxgl.accessToken = `{{ env("MAPBOX_TOKEN") }}`;
-        //map
-
-        const raw = (`{{ $pasien->koordinat_lokasi }}`).split(',')
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [raw[1],raw[0]],
-            zoom: 10
-        });
-
-        map.on('load', function() {
-            
-            const lngLat = {
-                lng:raw[1],
-                lat:raw[0]
-            }
-            marker = new mapboxgl.Marker()
-            .setLngLat(lngLat)
-            .addTo(map);
-        });
-
-        //interaksi
-        var mapInteraksi = new mapboxgl.Map({
-            container: 'map_interaksi',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [116.924, -0.331],
-            zoom: 3
-        });
-
-        mapInteraksi.on('load', function() {
-            mapInteraksi.addSource('interaksis', {
-                'type': 'geojson',
-                'data': <?=json_encode($pasien->interaksi_geojson);?>
+        $(document).ready(function(){
+            mapboxgl.accessToken = `{{ env("MAPBOX_TOKEN") }}`;
+            //map
+            const raw = (`{{ $pasien->koordinat_lokasi }}`).split(',')
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [raw[1],raw[0]],
+                zoom: 13
             });
 
-            mapInteraksi.addLayer({
-                'id': 'interaksis',
-                'type': 'circle',
-                'source': 'interaksis',
-                'layout': {
-                    // make layer visible by default
-                    'visibility': 'visible'
-                },
-                'paint': {
-                    'circle-radius': 8,
-                    'circle-color': 'rgba(55,148,179,1)'
-                },
+            map.on('load', function() {
                 
+                const lngLat = {
+                    lng:raw[1],
+                    lat:raw[0]
+                }
+                marker = new mapboxgl.Marker()
+                .setLngLat(lngLat)
+                .addTo(map);
             });
-        });
+
+            //interaksi
+            var mapInteraksi = new mapboxgl.Map({
+                container: 'map_interaksi',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [116.924, -0.331],
+                zoom: 3
+            });
+
+            mapInteraksi.on('load', function() {
+                mapInteraksi.addSource('interaksis', {
+                    'type': 'geojson',
+                    'data': <?=json_encode($pasien->interaksi_geojson);?>
+                });
+
+                mapInteraksi.addLayer({
+                    'id': 'interaksis',
+                    'type': 'circle',
+                    'source': 'interaksis',
+                    'layout': {
+                        // make layer visible by default
+                        'visibility': 'visible'
+                    },
+                    'paint': {
+                        'circle-radius': 8,
+                        'circle-color': 'rgba(55,148,179,1)'
+                    },
+                    
+                });
+            });
+        })
     </script>
 @endpush
