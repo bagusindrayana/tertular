@@ -1,6 +1,6 @@
 ## **TERTULAR**
 
-Sistem informasi berbasis web untuk pendataan dan pelacakan lokasi pasien positif covid-19/virus corona
+Sistem informasi berbasis web untuk pendataan dan pemetaan lokasi pasien positif covid-19/virus corona
 
 ![halaman depan](https://i.ibb.co/ZWVGLdj/Fire-Shot-Capture-122-Tertular-tertular-dev-com.png)
 ![peta sebaran pasien di dashboard](https://i.ibb.co/ChgvRqJ/Fire-Shot-Capture-124-Tertular-tertular-dev-com.png)
