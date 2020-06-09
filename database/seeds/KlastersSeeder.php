@@ -1,5 +1,6 @@
 <?php
 
+use App\Klaster;
 use Illuminate\Database\Seeder;
 
 class KlastersSeeder extends Seeder
@@ -11,6 +12,9 @@ class KlastersSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Klaster::create([
+            'id'=>1,
+            'nama_klaster'=>'Klaster Pertama'
+        ]);
     }
 }

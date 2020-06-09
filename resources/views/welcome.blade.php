@@ -121,6 +121,8 @@
                 geocoder
             );
 
+            map.addControl(new mapboxgl.NavigationControl());
+
             var zoomThreshold = 4;
             map.on('load', function() {
                 var provinsiLegend = document.getElementById('provinsi-legend');
@@ -196,7 +198,7 @@
                 });
 
                 map.on('click', 'provinsi-layer', function(e) {
-                    console.log(e)
+                    
                     const htmls = `
                         <strong>${e.features[0].properties.nama_provinsi}</strong>
                         <br/>
@@ -224,7 +226,6 @@
                 });
 
                 map.on('click', 'kota-layer', function(e) {
-                    console.log(e)
                     const htmls = `
                         <strong>${e.features[0].properties.nama_kota}</strong>
                         <br/>

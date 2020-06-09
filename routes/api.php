@@ -24,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('map-provinsi-geojson','ApiController@getProvinsiMap');
 Route::get('map-kabkota-geojson','ApiController@getKotaMap');
 Route::get('map-sebaran-geojson','ApiController@getSebaranPoint');
+Route::get('map-rawan-geojson','ApiController@getRawanPoint');
 Route::get('/cek-koordinat/{latitude}/{longitude}', 'ApiController@cekKoordinat');
 
 

@@ -27,7 +27,7 @@ class InteraksisSeeder extends Seeder
                 'keterangan'=>"Jalan-Jalan",
                 'tanggal_interaksi'=>"2020-06-07",
                 'lokasi'=>"Kalimantan Timur",
-                'koordinat_lokasi'=>$res['geometry']['coordinates'][1].".".$res['geometry']['coordinates'][0],
+                'koordinat_lokasi'=>$res['geometry']['coordinates'][1].",".$res['geometry']['coordinates'][0],
                 'provinsi_id'=>64,
                 'kota_id'=>$res['properties']['id']
             ];

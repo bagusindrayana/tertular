@@ -174,6 +174,29 @@
                     
                 });
             });
+
+            mapInteraksi.on('click','interaksis',function(e){
+                const htmls = `
+                    <label class="text-info">Lokasi : ${e.features[0].properties.lokasi}</label>
+                    <br/>
+                    <label class="text-success">Keterangan : ${e.features[0].properties.keterangan}</label>
+                `;
+                new mapboxgl.Popup()
+                    .setLngLat(e.lngLat)
+                    .setHTML(htmls)
+                    .addTo(mapInteraksi);
+
+                mapInteraksi.flyTo({
+                    center: e.lngLat
+                });
+            });
+
+            mapInteraksi.on('mouseenter', 'kota-layer', function() {
+                mapInteraksi.getCanvas().style.cursor = 'pointer';
+            });
+            mapInteraksi.on('mouseleave', 'kota-layer', function() {
+                mapInteraksi.getCanvas().style.cursor = '';
+            });
         })
     </script>
 @endpush

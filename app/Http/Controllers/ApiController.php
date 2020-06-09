@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Interaksi;
 use App\Kecamatan;
 use App\Kelurahan;
 use App\Kota;
@@ -287,6 +288,43 @@ class ApiController extends Controller
                 'properties'=>[
                     'id'=>$p->id,
                     'lokasi'=>$p->lokasi
+                ],
+                'geometry'=>[
+                    'type'=>'Point',
+                    'coordinates'=>$koordinat
+                ]
+            ];
+
+            $data['features'][] = $b;
+        }
+        return $data;
+    }
+
+    public function getRawanPoint()
+    {
+        $data = [
+            'type'=>'FeatureCollection',
+            'crs'=>[
+                'type'=>'name',
+                'properties'=>[
+                    'name'=>'test'
+                ]
+            ],
+            'features'=>[
+                
+            ]
+        ];
+
+        $interaksi = Interaksi::whereNotNull('koordinat_lokasi')->get();
+      
+        foreach ($interaksi as $i) {
+            $raw = explode(',',$i->koordinat_lokasi);
+            $koordinat = [$raw[1],$raw[0]];
+            $b = [
+                'type'=>'Feature',
+                'properties'=>[
+                    'id'=>$i->id,
+                    'lokasi'=>$i->lokasi
                 ],
                 'geometry'=>[
                     'type'=>'Point',
