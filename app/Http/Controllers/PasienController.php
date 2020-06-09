@@ -21,7 +21,7 @@ class PasienController extends Controller
     {
         $s = request()->s ?? "";
         $datas = Pasien::where(function($w)use($s){
-            $w->where('nama_lengkap','LIKE','%'.$s.'%')->orWhere("status",'LIKE','%'.$s.'%')->orWhere('alamat','LIKE','%'.$s.'%')->orWhereHas('provinsi',function($q)use($s){
+            $w->where('nama_lengkap','LIKE','%'.$s.'%')->orWhere('alamat','LIKE','%'.$s.'%')->orWhereHas('provinsi',function($q)use($s){
                 $q->where('nama_provinsi','LIKE','%'.$s.'%');
             })->orWhereHas('kota',function($q)use($s){
                 $q->where('nama_kota','LIKE','%'.$s.'%');

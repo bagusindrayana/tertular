@@ -67,6 +67,11 @@ class Pasien extends Model
         return $this->hasMany(PasienStatus::class,'pasien_id');
     }
 
+    public function getStatusAttribute()
+    {
+        return $this->statuses()->orderBy('tanggal_status','DESC')->first()->status ?? "Belum Ada";
+    }
+
     public function getInteraksiGeojsonAttribute()
     {
         $interaksis = $this->interaksis()->get();
