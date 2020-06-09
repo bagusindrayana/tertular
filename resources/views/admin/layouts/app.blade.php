@@ -64,7 +64,7 @@
                                 <div class="sb-sidenav-menu-heading">Master Data</div>
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseWilayah" aria-expanded="false" aria-controls="collapseWilayah"
                                     ><div class="sb-nav-link-icon"><i class="fas fa-map"></i></div>
-                                    Wialayah
+                                    Wilayah
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                                 ></a>
                                 <div class="collapse" id="collapseWilayah" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
