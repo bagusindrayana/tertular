@@ -20,4 +20,11 @@ Sistem informasi berbasis web untuk pendataan dan pemetaan lokasi pasien positif
  10. jalankan perintah `php artisan db:seed` **(OPTIONAL jika ingin menambahkan data user provinsi,kota,kecamatan,dan kelurahan indonesia serta data dummy pasien untuk wilayah kaltim,bisa di custom di bagain database seeder (total baris ada 80000+))**
   11. dan jalankan `php artisan serve` lalu buka [http://127.0.0.1:8000/](http://127.0.0.1:8000/) di browser
 
+  Default Admin
+
+  username : iniadmin
+  
+  password : admin4321
+
 ***sistem ini belum final jadi setiap ada perubahan database harus menjalankan migration dari awal lagi dengan `php artisan migrate:fresh`***
+
