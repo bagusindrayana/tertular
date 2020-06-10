@@ -31,6 +31,9 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function ()
         Route::resource('klaster','KlasterController');
         Route::resource('pasien','PasienController');
         Route::resource('user','UserController');
+        Route::get('laporan/{menu}','LaporanController@index')->name('laporan.index');
+        Route::get('laporan/{menu}/export','LaporanController@export')->name('laporan.export');
+        Route::post('laporan/{menu}/export','LaporanController@export')->name('laporan.export');
     });
     
     

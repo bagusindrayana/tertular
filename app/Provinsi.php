@@ -19,4 +19,30 @@ class Provinsi extends Model
     {
        return $this->hasMany(Pasien::class,'lokasi_provinsi_id');
     }
+
+    public function getTotalPasienAttribute()
+    {
+        return $this->pasiens()->count();
+    }
+
+    public function getTotalKasusPositifAttribute()
+    {
+        return $this->pasiens()->whereHas('statuses',function($w){
+            $w->where('status','Positif');
+        })->count();
+    }
+
+    public function getTotalKasusMeninggalAttribute()
+    {
+        return $this->pasiens()->whereHas('statuses',function($w){
+            $w->where('status','Meninggal');
+        })->count();
+    }
+
+    public function getTotalKasusSembuhAttribute()
+    {
+        return $this->pasiens()->whereHas('statuses',function($w){
+            $w->where('status','Sembuh;');
+        })->count();
+    }
 }

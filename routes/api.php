@@ -25,6 +25,7 @@ Route::get('map-provinsi-geojson','ApiController@getProvinsiMap');
 Route::get('map-kabkota-geojson','ApiController@getKotaMap');
 Route::get('map-sebaran-geojson','ApiController@getSebaranPoint');
 Route::get('map-rawan-geojson','ApiController@getRawanPoint');
+Route::get('jumlah-pasien-perhari/{days}','ApiController@getPasienPerHari');
 Route::get('/cek-koordinat/{latitude}/{longitude}', 'ApiController@cekKoordinat');
 
 

@@ -8,6 +8,7 @@ use App\Kelurahan;
 use App\Kota;
 use App\Pasien;
 use App\Provinsi;
+use DateTime;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -124,7 +125,6 @@ class ApiController extends Controller
 
         return json_encode($new);
     }
-
 
     public function cekKoordinat($latitude,$longitude)
     {
@@ -337,5 +337,24 @@ class ApiController extends Controller
         return $data;
     }
 
+    public function getPasienPerHari($days)
+    {
+    	$date = date('Y-m-d'); 
+		$weekOfdays = array([
+				'tanggal'=>$date,
+				'data'=>Pasien::whereDate('created_at',$date)->count()
+            ]);
+            
+		$date = new DateTime($date);
+		for($i=1; $i < $days ; $i++){
+		    $date->modify('-1 day');
+		    $weekOfdays[] = [
+		    	'tanggal'=>$date->format('Y-m-d'),
+				'data'=>Pasien::whereDate('created_at',$date->format('Y-m-d'))->count()
+		    ];
+		}
+
+		return $weekOfdays;
+	}
     
 }

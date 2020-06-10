@@ -91,6 +91,19 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                                     User
                                 </a>
+                                <div class="sb-sidenav-menu-heading">Laporan</div>
+                                <a class="nav-link" href="{{ route('admin.laporan.index','klaster') }}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                    Klaster
+                                </a>
+                                <a class="nav-link" href="{{ route('admin.laporan.index','provinsi') }}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                    Provinsi
+                                </a>
+                                <a class="nav-link" href="{{ route('admin.laporan.index','pasien') }}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                    Pasien
+                                </a>
                             @endif
                             
                         </div>
