@@ -28,6 +28,8 @@ class CreateInteraksisTable extends Migration
             $table->softDeletes();
 
             $table->index('pasien_id', 'pasien_id');
+            $table->index('provinsi_id', 'provinsi_id');
+            $table->index('kota_id', 'kota_id');
             $table->foreign('pasien_id', 'pasien_id')->references('id')->on('pasiens')->onDelete('RESTRICT
 ')->onUpdate('RESTRICT');
             $table->foreign('provinsi_id')->references('id')->on('provinsis')->onDelete('RESTRICT')->onUpdate('RESTRICT');
