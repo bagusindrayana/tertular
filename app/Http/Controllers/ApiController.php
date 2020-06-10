@@ -363,6 +363,23 @@ class ApiController extends Controller
 		}
 
 		return $weekOfdays;
-	}
+    }
+    
+    public function getTotalKasus()
+    {
+        $data = [
+            "total_kasus_positif"=>Pasien::whereHas('statuses',function($w){
+                $w->where('status','Positif')->orWhere('status','Sembuh')->orWhere('status','Meninggal');
+            })->count(),
+            "total_kasus_sembuh"=>Pasien::whereHas('statuses',function($w){
+                $w->where('status','Sembuh');
+            })->count(),
+            "total_kasus_meninggal"=>Pasien::whereHas('statuses',function($w){
+                $w->where('status','Meninggal');
+            })->count(),
+        ];
+
+        return json_encode($data);
+    }
     
 }

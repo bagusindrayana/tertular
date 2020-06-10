@@ -28,4 +28,6 @@ Route::get('map-rawan-geojson','ApiController@getRawanPoint');
 Route::get('jumlah-pasien-perhari/{days}','ApiController@getPasienPerHari');
 Route::get('/cek-koordinat/{latitude}/{longitude}', 'ApiController@cekKoordinat');
 
+Route::get('total-kasus','ApiController@getTotalKasus');
+
 
