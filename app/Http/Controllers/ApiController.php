@@ -23,7 +23,7 @@ class ApiController extends Controller
             $nama_provinsi = $feature['properties']['nama_provinsi'];
             $cek = Provinsi::where('nama_provinsi','LIKE','%'.$nama_provinsi.'%')->first();
             if($cek){
-                $positif = $cek->lokasi_pasiens()->where(function($w){
+                $positif = $cek->lokasi_pasiens()->whereHas('statuses',function($w){
                     $w->where('status','Positif')->orWhere('status','Sembuh')->orWhere('status','Meninggal');
                 })->count();
                 $color = $colors[0];
@@ -46,8 +46,12 @@ class ApiController extends Controller
                     'nama_provinsi'=>$nama_provinsi,
                     'id'=>$cek->id,
                     'total_kasus_positif'=>$positif,
-                    'total_kasus_sembuh'=>$cek->pasiens()->where('status','Sembuh')->count(),
-                    'total_kasus_meninggal'=>$cek->pasiens()->where('status','Meninggal')->count(),
+                    'total_kasus_sembuh'=>$cek->pasiens()->whereHas('statuses',function($w){
+                        $w->where('status','Sembuh');
+                    })->count(),
+                    'total_kasus_meninggal'=>$cek->pasiens()->whereHas('statuses',function($w){
+                        $w->where('status','Meninggal');
+                    })->count(),
                     'color'=>$color
                 ];
                 $json['features'][$index]['properties'] = $properties;
@@ -84,7 +88,7 @@ class ApiController extends Controller
                 $nama_kota = $feature['properties']['nama_kota'];
                 $cek = Kota::where('nama_kota','LIKE','%'.$nama_kota.'%')->first();
                 if($cek){
-                    $positif = $cek->lokasi_pasiens()->where(function($w){
+                    $positif = $cek->lokasi_pasiens()->whereHas('statuses',function($w){
                         $w->where('status','Positif')->orWhere('status','Sembuh')->orWhere('status','Meninggal');
                     })->count();
                     $color = $colors[0];
@@ -108,8 +112,12 @@ class ApiController extends Controller
                         'id'=>$cek->id,
                         'id_provinsi'=>$cek->provinsi_id,
                         'total_kasus_positif'=>$positif,
-                        'total_kasus_sembuh'=>$cek->pasiens()->where('status','Sembuh')->count(),
-                        'total_kasus_meninggal'=>$cek->pasiens()->where('status','Meninggal')->count(),
+                        'total_kasus_sembuh'=>$cek->pasiens()->whereHas('statuses',function($w){
+                            $w->where('status','Sembuh');
+                        })->count(),
+                        'total_kasus_meninggal'=>$cek->pasiens()->whereHas('statuses',function($w){
+                            $w->where('status','Meninggal');
+                        })->count(),
                         'color'=>$color
                     ];
                     $json['features'][$index]['properties'] = $properties;

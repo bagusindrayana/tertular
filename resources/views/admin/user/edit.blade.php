@@ -41,8 +41,12 @@
                 <div class="form-group">
                     <label for="level">Level</label>
                     <select name="level" id="level" class="form-control select2">
-                        <option value="Admin">Admin</option>
-                        <option value="Petugas">Petugas</option>
+                        <option value="Admin" @if ($user->level == "Admin")
+                            selected
+                        @endif>Admin</option>
+                        <option @if ($user->level == "Petugas")
+                            selected
+                        @endif value="Petugas">Petugas</option>
                     </select>
                 </div>
 

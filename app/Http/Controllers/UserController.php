@@ -88,10 +88,14 @@ class UserController extends Controller
         $request->validate([
             'nama'=>'required|string|max:100'
         ]);
-
-        $user->update([
-            'nama'=>$request->nama
-        ]);
+        $data = [
+            'nama'=>$request->nama,
+            'username'=>$request->username
+        ];
+        if(isset($request->password)){
+            $data['password'] = Hash::make($request->password);
+        }
+        $user->update($data);
 
         return redirect(route('admin.user.index'))->with(['success'=>'Mengupdate Data User Dengan Nama : '.$user->nama]);
     }
