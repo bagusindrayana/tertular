@@ -20,6 +20,7 @@ class CreatePasiensTable extends Migration
             $table->string('nama_lengkap',191);
             $table->date('tanggal_lahir');
             $table->text('alamat')->nullable();
+            $table->string('jenis_kelamin',20);
             $table->unsignedBigInteger('kelurahan_id')->nullable();
             $table->unsignedBigInteger('kecamatan_id')->nullable();
             $table->unsignedBigInteger('kota_id');
@@ -37,9 +38,9 @@ class CreatePasiensTable extends Migration
             $table->index('provinsi_id');
             $table->index('klaster_id');
             $table->foreign('provinsi_id')->references('id')->on('provinsis')->onDelete('RESTRICT')->onUpdate('RESTRICT');
-            $table->foreign('kota_id')->references('id')->on('provinsis')->onDelete('RESTRICT')->onUpdate('RESTRICT');
+            $table->foreign('kota_id')->references('id')->on('kotas')->onDelete('RESTRICT')->onUpdate('RESTRICT');
             $table->foreign('lokasi_provinsi_id')->references('id')->on('provinsis')->onDelete('RESTRICT')->onUpdate('RESTRICT');
-            $table->foreign('lokasi_kota_id')->references('id')->on('provinsis')->onDelete('RESTRICT')->onUpdate('RESTRICT');
+            $table->foreign('lokasi_kota_id')->references('id')->on('kotas')->onDelete('RESTRICT')->onUpdate('RESTRICT');
             $table->foreign('klaster_id')->references('id')->on('klasters')->onDelete('RESTRICT')->onUpdate('RESTRICT');
 
         });

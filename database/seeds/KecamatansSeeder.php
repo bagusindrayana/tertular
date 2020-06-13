@@ -11,8 +11,8 @@ class KecamatansSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        DB::insert("INSERT INTO `tb_kecamatans` (`id`, `nama_kecamatan`, `kota_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+    {   
+        DB::insert("INSERT INTO tb_kecamatans (id,nama_kecamatan,kota_id,created_at, updated_at,deleted_at) VALUES
         (1101010, 'TEUPAH SELATAN', 1101, NULL, NULL, NULL),
         (1101020, 'SIMEULUE TIMUR', 1101, NULL, NULL, NULL),
         (1101021, 'TEUPAH BARAT', 1101, NULL, NULL, NULL),
@@ -1049,8 +1049,7 @@ class KecamatansSeeder extends Seeder
         (1408021, 'SIAK KECIL', 1408, NULL, NULL, NULL),
         (1408022, 'BANDAR LAKSAMANA', 1408, NULL, NULL, NULL),
         (1408030, 'RUPAT', 1408, NULL, NULL, NULL),
-        (1408031, 'RUPAT UTARA', 1408, NULL, NULL, NULL);
-        INSERT INTO `tb_kecamatans` (`id`, `nama_kecamatan`, `kota_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+        (1408031, 'RUPAT UTARA', 1408, NULL, NULL, NULL),
         (1408040, 'BENGKALIS', 1408, NULL, NULL, NULL),
         (1408050, 'BANTAN', 1408, NULL, NULL, NULL),
         (1409010, 'TANAH PUTIH', 1409, NULL, NULL, NULL),
@@ -2087,8 +2086,9 @@ class KecamatansSeeder extends Seeder
         (3203040, 'NARINGGUL', 3203, NULL, NULL, NULL),
         (3203050, 'CIBINONG', 3203, NULL, NULL, NULL),
         (3203051, 'CIKADU', 3203, NULL, NULL, NULL),
-        (3203060, 'TANGGEUNG', 3203, NULL, NULL, NULL);
-        INSERT INTO `tb_kecamatans` (`id`, `nama_kecamatan`, `kota_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+        (3203060, 'TANGGEUNG', 3203, NULL, NULL, NULL)");
+
+        DB::insert("INSERT INTO tb_kecamatans (id, nama_kecamatan, kota_id, created_at, updated_at, deleted_at) VALUES
         (3203061, 'PASIRKUDA', 3203, NULL, NULL, NULL),
         (3203070, 'KADUPANDAK', 3203, NULL, NULL, NULL),
         (3203071, 'CIJATI', 3203, NULL, NULL, NULL),
@@ -3182,8 +3182,9 @@ class KecamatansSeeder extends Seeder
         (3374100, 'GAYAMSARI', 3374, NULL, NULL, NULL),
         (3374110, 'SEMARANG TIMUR', 3374, NULL, NULL, NULL),
         (3374120, 'SEMARANG UTARA', 3374, NULL, NULL, NULL),
-        (3374130, 'SEMARANG TENGAH', 3374, NULL, NULL, NULL);
-        INSERT INTO `tb_kecamatans` (`id`, `nama_kecamatan`, `kota_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+        (3374130, 'SEMARANG TENGAH', 3374, NULL, NULL, NULL)");
+
+        DB::insert("INSERT INTO tb_kecamatans (id, nama_kecamatan, kota_id, created_at, updated_at, deleted_at) VALUES
         (3374140, 'SEMARANG BARAT', 3374, NULL, NULL, NULL),
         (3374150, 'TUGU', 3374, NULL, NULL, NULL),
         (3374160, 'NGALIYAN', 3374, NULL, NULL, NULL),
@@ -4295,8 +4296,9 @@ class KecamatansSeeder extends Seeder
         (5302071, 'KAMBERA', 5302, NULL, NULL, NULL),
         (5302080, 'HAHARU', 5302, NULL, NULL, NULL),
         (5302081, 'KANATANG', 5302, NULL, NULL, NULL),
-        (5303100, 'SEMAU', 5303, NULL, NULL, NULL);
-        INSERT INTO `tb_kecamatans` (`id`, `nama_kecamatan`, `kota_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+        (5303100, 'SEMAU', 5303, NULL, NULL, NULL)");
+
+        DB::insert("INSERT INTO tb_kecamatans (id, nama_kecamatan, kota_id, created_at, updated_at, deleted_at) VALUES
         (5303101, 'SEMAU SELATAN', 5303, NULL, NULL, NULL),
         (5303110, 'KUPANG BARAT', 5303, NULL, NULL, NULL),
         (5303111, 'NEKAMESE', 5303, NULL, NULL, NULL),
@@ -5346,8 +5348,10 @@ class KecamatansSeeder extends Seeder
         (7171051, 'SINGKIL', 7171, NULL, NULL, NULL),
         (7171052, 'TUMINTING', 7171, NULL, NULL, NULL),
         (7171053, 'BUNAKEN', 7171, NULL, NULL, NULL),
-        (7171054, 'BUNAKEN KEPULAUAN', 7171, NULL, NULL, NULL);
-        INSERT INTO `tb_kecamatans` (`id`, `nama_kecamatan`, `kota_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+        (7171054, 'BUNAKEN KEPULAUAN', 7171, NULL, NULL, NULL)");
+
+
+        DB::insert("INSERT INTO tb_kecamatans (id, nama_kecamatan, kota_id, created_at, updated_at, deleted_at) VALUES
         (7172010, 'MADIDIR', 7172, NULL, NULL, NULL),
         (7172011, 'MATUARI', 7172, NULL, NULL, NULL),
         (7172012, 'GIRIAN', 7172, NULL, NULL, NULL),
@@ -6417,8 +6421,9 @@ class KecamatansSeeder extends Seeder
         (8206031, 'WASILE TIMUR', 8206, NULL, NULL, NULL),
         (8206032, 'WASILE TENGAH', 8206, NULL, NULL, NULL),
         (8206033, 'WASILE UTARA', 8206, NULL, NULL, NULL),
-        (8206040, 'MABA', 8206, NULL, NULL, NULL);
-        INSERT INTO `tb_kecamatans` (`id`, `nama_kecamatan`, `kota_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+        (8206040, 'MABA', 8206, NULL, NULL, NULL)");
+    
+        DB::insert("INSERT INTO tb_kecamatans (id, nama_kecamatan, kota_id, created_at, updated_at, deleted_at) VALUES
         (8206041, 'MABA TENGAH', 8206, NULL, NULL, NULL),
         (8206042, 'MABA UTARA', 8206, NULL, NULL, NULL),
         (8207010, 'MOROTAI SELATAN', 8207, NULL, NULL, NULL),

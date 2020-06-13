@@ -12,7 +12,7 @@ class KotasSeeder extends Seeder
      */
     public function run()
     {
-        DB::insert("INSERT INTO `tb_kotas` (`id`, `nama_kota`, `provinsi_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+        DB::insert("INSERT INTO tb_kotas (id, nama_kota, provinsi_id, created_at, updated_at, deleted_at) VALUES
         (1101, 'KABUPATEN SIMEULUE', 11, NULL, NULL, NULL),
         (1102, 'KABUPATEN ACEH SINGKIL', 11, NULL, NULL, NULL),
         (1103, 'KABUPATEN ACEH SELATAN', 11, NULL, NULL, NULL),

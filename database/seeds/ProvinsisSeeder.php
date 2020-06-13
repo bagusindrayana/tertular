@@ -12,7 +12,7 @@ class ProvinsisSeeder extends Seeder
      */
     public function run()
     {
-        DB::insert("INSERT INTO `tb_provinsis` (`id`, `nama_provinsi`, `created_at`, `updated_at`, `deleted_at`) VALUES
+        DB::insert("INSERT INTO tb_provinsis (id, nama_provinsi, created_at, updated_at, deleted_at) VALUES
         (11, 'DI ACEH', NULL, NULL, NULL),
         (12, 'SUMATERA UTARA', NULL, NULL, NULL),
         (13, 'SUMATERA BARAT', NULL, NULL, NULL),
