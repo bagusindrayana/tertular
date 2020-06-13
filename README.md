@@ -28,3 +28,10 @@ Sistem informasi berbasis web untuk pendataan dan pemetaan lokasi pasien positif
 
 ***sistem ini belum final jadi setiap ada perubahan database harus menjalankan migration dari awal lagi dengan `php artisan migrate:fresh`***
 
+referensi data peta (geojson)
+
+-https://github.com/ans-4175/peta-indonesia-geojson
+-https://github.com/rogobgobs/peta-administrasi
+-https://github.com/naristo/indonesia-geojson
+-https://github.com/superpikar/indonesia-geojson
+
