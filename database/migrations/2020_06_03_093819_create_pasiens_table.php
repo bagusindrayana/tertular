@@ -20,6 +20,7 @@ class CreatePasiensTable extends Migration
             $table->string('nama_lengkap',191);
             $table->date('tanggal_lahir');
             $table->text('alamat')->nullable();
+            $table->text('keterangan')->nullable();
             $table->string('jenis_kelamin',20);
             $table->unsignedBigInteger('kelurahan_id')->nullable();
             $table->unsignedBigInteger('kecamatan_id')->nullable();

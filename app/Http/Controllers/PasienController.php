@@ -162,7 +162,7 @@ class PasienController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Pasien $pasien)
-    {
+    {   
         $request->validate([
             'nama_lengkap'=>'required|string|max:100',
             'jenis_kelamin'=>'required',
@@ -182,12 +182,12 @@ class PasienController extends Controller
             'lokasi'=>$request->lokasi,
             'koordinat_lokasi'=>$request->koordinat_lokasi,
             'lokasi_provinsi_id'=>$request->provinsi_id,
-            'lokasi_kota_id'=>$request->kota_id,
+            'lokasi_kota_id'=>$request->lokasi_kota_id,
             'lokasi_kecamatan_id'=>$request->kecamatan_id,
             'lokasi_kelurahan_id'=>$request->kelurahan_id,
             'lokasi_tanggal'=>$request->lokasi_tanggal,
             'klaster_id'=>$request->klaster_id,
-            'status'=>$request->status
+            // 'status'=>$request->status
         ]);
 
         PasienStatus::where('pasien_id',$pasien->id)->delete();

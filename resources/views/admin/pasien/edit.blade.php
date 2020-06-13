@@ -349,7 +349,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="provinsi_id">Provinsi</label>
-                                            <select name="provinsi_id[]" class="form-control select2">
+                                            <select name="interaksi_provinsi_id[]" class="form-control select2">
                                                 @foreach ($provinsis as $id => $name)
                                                     <option value="{{ $id }}" @if ($item->provinsi_id == $id)
                                                         selected
@@ -360,7 +360,7 @@
                             
                                         <div class="form-group">
                                             <label for="kota_id">Kota</label>
-                                            <select name="kota_id[]" class="form-control select2-kota ajax" data-url="kota">
+                                            <select name="interaksi_kota_id[]" class="form-control select2-kota ajax" data-url="kota">
                                                
                                                 @if ($item->kota)
                                                 <option value="{{ $item->kota_id }}" selected="selected">{{ $item->kota->nama_kota }}</option>
@@ -370,7 +370,7 @@
                             
                                         <div class="form-group">
                                             <label for="kecamatan_id">Kecamatan</label>
-                                            <select name="kecamatan_id[]" class="form-control select2-kecamatan ajax" data-url="kecamatan">
+                                            <select name="interaksi_kecamatan_id[]" class="form-control select2-kecamatan ajax" data-url="kecamatan">
                                                
                                                 @if ($item->kecamatan)
                                                 <option value="{{ $item->kecamatan_id }}" selected="selected">{{ $item->kecamatan->nama_kecamatan }}</option>
@@ -381,7 +381,7 @@
                             
                                         <div class="form-group">
                                             <label for="kelurahan_id">Kelurahan</label>
-                                            <select name="kelurahan_id[]" class="form-control select2-kelurahan ajax" data-url="kelurahan">
+                                            <select name="interaksi_kelurahan_id[]" class="form-control select2-kelurahan ajax" data-url="kelurahan">
                                         
                                                 @if ($item->kelurahan)
                                                     <option value="{{ $item->kelurahan_id }}" selected="selected">{{ $item->kelurahan->nama_kelurahan }}</option>
