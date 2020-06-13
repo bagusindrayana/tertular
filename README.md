@@ -30,8 +30,8 @@ Sistem informasi berbasis web untuk pendataan dan pemetaan lokasi pasien positif
 
 referensi data peta (geojson)
 
--https://github.com/ans-4175/peta-indonesia-geojson
--https://github.com/rogobgobs/peta-administrasi
--https://github.com/naristo/indonesia-geojson
--https://github.com/superpikar/indonesia-geojson
+- https://github.com/ans-4175/peta-indonesia-geojson
+- https://github.com/rogobgobs/peta-administrasi
+- https://github.com/naristo/indonesia-geojson
+- https://github.com/superpikar/indonesia-geojson
 
