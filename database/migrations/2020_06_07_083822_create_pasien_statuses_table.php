@@ -19,8 +19,8 @@ class CreatePasienStatusesTable extends Migration
             $table->text('keterangan_status');
             $table->date('tanggal_status');
             $table->string('status',50);
-            $table->index('pasien_id', 'pasien_id');
-            $table->foreign('pasien_id', 'pasien_id')->references('id')->on('pasiens')->onDelete('RESTRICT
+            $table->index('pasien_id');
+            $table->foreign('pasien_id')->references('id')->on('pasiens')->onDelete('RESTRICT
 ')->onUpdate('RESTRICT');
             $table->timestamps();
             $table->softDeletes();
