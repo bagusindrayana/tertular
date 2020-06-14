@@ -19,8 +19,8 @@ class CreateKecamatansTable extends Migration
             $table->unsignedBigInteger('kota_id');
             $table->timestamps();
             $table->softDeletes();
-            $table->index('kota_id', 'kota_id');
-            $table->foreign('kota_id', 'kota_id')->references('id')->on('kotas')->onDelete('RESTRICT
+            $table->index('kota_id');
+            $table->foreign('kota_id')->references('id')->on('kotas')->onDelete('RESTRICT
 ')->onUpdate('RESTRICT');
         });
     }

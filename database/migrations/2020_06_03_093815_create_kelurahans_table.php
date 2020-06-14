@@ -19,8 +19,8 @@ class CreateKelurahansTable extends Migration
             $table->string('nama_kelurahan', 100);
             $table->timestamps();
             $table->softDeletes();
-            $table->index('kecamatan_id', 'kecamatan_id');
-            $table->foreign('kecamatan_id', 'kecamatan_id')->references('id')->on('kecamatans')->onDelete('RESTRICT
+            $table->index('kecamatan_id');
+            $table->foreign('kecamatan_id')->references('id')->on('kecamatans')->onDelete('RESTRICT
 ')->onUpdate('RESTRICT');
         });
     }

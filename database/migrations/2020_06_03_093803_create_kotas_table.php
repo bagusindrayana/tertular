@@ -19,8 +19,8 @@ class CreateKotasTable extends Migration
             $table->unsignedBigInteger('provinsi_id');
             $table->timestamps();
             $table->softDeletes();
-            $table->index('provinsi_id', 'provinsi_id');
-            $table->foreign('provinsi_id', 'provinsi_id')->references('id')->on('provinsis')->onDelete('RESTRICT
+            $table->index('provinsi_id');
+            $table->foreign('provinsi_id')->references('id')->on('provinsis')->onDelete('RESTRICT
 ')->onUpdate('RESTRICT');
         });
     }
