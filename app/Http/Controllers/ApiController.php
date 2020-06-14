@@ -20,8 +20,8 @@ class ApiController extends Controller
         $ranges = ['0-100', '100-200', '200-500', '500-1000', '1000-2000', '2000-5000', '5000-10000', '10000+'];
         $colors = ['#FFEDA0', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C', '#BD0026', '#800026'];
         foreach ($json['features'] as $index => $feature) {
-            $nama_provinsi = $feature['properties']['nama_provinsi'];
-            $cek = Provinsi::where('nama_provinsi','LIKE','%'.$nama_provinsi.'%')->first();
+            $id_provinsi = $feature['properties']['id'];
+            $cek = Provinsi::find($id_provinsi);
             if($cek){
                 $positif = $cek->lokasi_pasiens()->whereHas('statuses',function($w){
                     $w->where('status','Positif')->orWhere('status','Sembuh')->orWhere('status','Meninggal');
@@ -43,7 +43,7 @@ class ApiController extends Controller
                 }
 
                 $properties = [
-                    'nama_provinsi'=>$nama_provinsi,
+                    'nama_provinsi'=>$cek->nama_provinsi,
                     'id'=>$cek->id,
                     'total_kasus_positif'=>$positif,
                     'total_kasus_sembuh'=>$cek->pasiens()->whereHas('statuses',function($w){
@@ -85,8 +85,8 @@ class ApiController extends Controller
         ];
         foreach ($json['features'] as $index => $feature) {
             if($feature['properties']['id_provinsi'] == request()->provinsi_id || request()->provinsi_id == null){
-                $nama_kota = $feature['properties']['nama_kota'];
-                $cek = Kota::where('nama_kota','LIKE','%'.$nama_kota.'%')->first();
+                $id_kota = $feature['properties']['id'];
+                $cek = Kota::find($id_kota);
                 if($cek){
                     $positif = $cek->lokasi_pasiens()->whereHas('statuses',function($w){
                         $w->where('status','Positif')->orWhere('status','Sembuh')->orWhere('status','Meninggal');
@@ -108,7 +108,7 @@ class ApiController extends Controller
                     }
 
                     $properties = [
-                        'nama_kota'=>$nama_kota,
+                        'nama_kota'=>$cek->nama_kota,
                         'id'=>$cek->id,
                         'id_provinsi'=>$cek->provinsi_id,
                         'total_kasus_positif'=>$positif,
