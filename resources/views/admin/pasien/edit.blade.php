@@ -46,6 +46,11 @@
                     <div class="form-group">
                         <label for="nama_lengkap">Nama Lengkap</label>
                         <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required placeholder="Nama lengkap" value="{{ old('nama_lengkap',$pasien->nama_lengkap) }}">
+                        @error('nama_lengkap')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
         
                     <div class="form-group">
@@ -54,20 +59,40 @@
                             <option value="Laki-Laki">Laki-Laki</option>
                             <option value="Perempuan">Perempuan</option>
                         </select>
+                        @error('jenis_kelamin')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
         
                     <div class="form-group">
                         <label for="tanggal_lahir">Tanggal Lahir</label>
                         <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" required placeholder="Tanggal Lahir" value="{{ old('tanggal_lahir',$pasien->tanggal_lahir) }}">
+                        @error('tanggal_lahir')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
         
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
                         <textarea name="alamat" id="alamat"  class="form-control" placeholder="Alamat">{{ old('alamat',$pasien->alamat) }}</textarea>
+                        @error('alamat')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>
                         <textarea name="keterangan" id="keterangan"  class="form-control" placeholder="Keterangan">{{ old('keterangan',$pasien->keterangan) }}</textarea>
+                        @error('keterangan')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -80,6 +105,11 @@
                                 @endif>{{ $name }}</option>
                             @endforeach
                         </select>
+                        @error('provinsi_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
         
                     <div class="form-group">
@@ -89,6 +119,11 @@
                                 <option value="{{ $pasien->kota_id }}" selected="selected">{{ $pasien->kota->nama_kota }}</option>
                             @endif
                         </select>
+                        @error('kota_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
         
                     <div class="form-group">
@@ -98,6 +133,11 @@
                                 <option value="{{ $pasien->kecamatan_id }}" selected="selected">{{ $pasien->kecamatan->nama_kecamatan }}</option>
                             @endif
                         </select>
+                        @error('kecamatan_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
         
                     <div class="form-group">
@@ -107,19 +147,29 @@
                                 <option value="{{ $pasien->kelurahan_id }}" selected="selected">{{ $pasien->kelurahan->nama_kelurahan }}</option>
                             @endif
                         </select>
+                        @error('kelurahan_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     
         
                     <div class="form-group">
                         <label for="klaster_id">Klaster</label>
-                        <select name="klaster_id" id="klaster_id" class="form-control select2">
+                        <select name="klaster_id" id="klaster_id" class="form-control select2" required>
                             @foreach ($klasters as $id => $name)
                                 <option value="{{ $id }}" @if (old('klaster_id',$pasien->klaster_id) == $id)
                                     selected
                                 @endif>{{ $name }}</option>
                             @endforeach
                         </select>
+                        @error('klaster_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
 
@@ -195,6 +245,7 @@
                                 <option value="{{ $pasien->lokasi_kelurahan_id }}" selected="selected">{{ $pasien->lokasi_kelurahan->nama_kelurahan }}</option>
                             @endif
                         </select>
+                        
                     </div>
 
                     

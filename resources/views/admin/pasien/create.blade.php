@@ -47,6 +47,11 @@
                             <div class="form-group">
                                 <label for="nama_lengkap">Nama Lengkap</label>
                                 <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required placeholder="Nama lengkap" value="{{ old('nama_lengkap') }}">
+                                @error('nama_lengkap')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="form-group">
@@ -55,21 +60,41 @@
                                     <option value="Laki-Laki">Laki-Laki</option>
                                     <option value="Perempuan">Perempuan</option>
                                 </select>
+                                @error('jenis_kelamin')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label for="tanggal_lahir">Tanggal Lahir</label>
                                 <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" required placeholder="Tanggal Lahir" value="{{ old('nama_lengkap') }}">
+                                @error('tanggal_lahir')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
                                 <textarea name="alamat" id="alamat"  class="form-control" placeholder="Alamat">{{ old('alamat') }}</textarea>
+                                @error('alamat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
                                 <textarea name="keterangan" id="keterangan"  class="form-control" placeholder="Keterangan">{{ old('keterangan') }}</textarea>
+                                @error('keterangan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -80,6 +105,11 @@
                                         <option value="{{ $id }}">{{ $name }}</option>
                                     @endforeach
                                 </select>
+                                @error('provinsi_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
         
                             <div class="form-group">
@@ -87,6 +117,11 @@
                                 <select name="kota_id" id="kota_id" class="form-control select2-kota kota_id">
                                 
                                 </select>
+                                @error('kota_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
         
                             <div class="form-group">
@@ -94,6 +129,11 @@
                                 <select name="kecamatan_id" id="kecamatan_id" class="form-control select2-kecamatan kecamatan_id">
                                 
                                 </select>
+                                @error('kecamatan_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
         
                             <div class="form-group">
@@ -101,11 +141,16 @@
                                 <select name="kelurahan_id" id="kelurahan_id" class="form-control select2-kelurahan kelurahan_id">
                                 
                                 </select>
+                                @error('kelurahan_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control select2">
+                                <select name="status" id="status" class="form-control select2" requireds>
                                     <option value="Suspect">Suspect</option>
                                     <option value="ODP">ODP (Orang Dalam Pemantauan)</option>
                                     <option value="PDP">PDP (Pasien Dalam Pengawasan)</option>
@@ -114,15 +159,25 @@
                                     <option value="Sembuh">Sembuh</option>
                                     <option value="Meninggal">Meninggal</option>
                                 </select>
+                                @error('status')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
         
                             <div class="form-group">
                                 <label for="klaster_id">Klaster</label>
-                                <select name="klaster_id" id="klaster_id" class="form-control select2">
+                                <select name="klaster_id" id="klaster_id" class="form-control select2" required>
                                     @foreach ($klasters as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
                                     @endforeach
                                 </select>
+                                @error('klaster_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>

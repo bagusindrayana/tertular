@@ -34,6 +34,11 @@
                 <div class="form-group">
                     <label for="nama_kelurahan">Nama Kelurahan</label>
                     <input type="text" class="form-control" name="nama_kelurahan" id="nama_kelurahan" required placeholder="Nama Kelurahan" value="{{ old('nama_kelurahan') }}">
+                    @error('nama_kelurahan')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -41,11 +46,16 @@
                     <select name="kecamatan_id" id="kecamatan_id" class="form-control select2">
                         <option value="1101010" selected="selected">TEUPAH SELATAN</option>
                     </select>
+                    @error('kecamatan_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
               
 
                 <div class="form-group">
-                    <button class="btn btn-success" nama_kelurahan="status" value="Publish">
+                    <button class="btn btn-success" >
                         Save
                     </button>
                 </div>

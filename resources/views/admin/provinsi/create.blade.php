@@ -30,6 +30,11 @@
                 <div class="form-group">
                     <label for="nama_provinsi">Nama Provinsi</label>
                     <input type="text" class="form-control" name="nama_provinsi" id="nama_provinsi" required placeholder="Nama Provinsi" value="{{ old('nama_provinsi') }}">
+                    @error('nama_provinsi')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
               
 

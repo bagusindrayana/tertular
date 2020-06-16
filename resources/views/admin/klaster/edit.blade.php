@@ -31,11 +31,16 @@
                 <div class="form-group">
                     <label for="nama_klaster">Nama Klaster</label>
                     <input type="text" class="form-control" name="nama_klaster" id="nama_klaster" required placeholder="Nama Klaster" value="{{ old('nama_klaster',$klaster->nama_klaster) }}">
+                    @error('nama_klaster')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
               
 
                 <div class="form-group">
-                    <button class="btn btn-success" nama_klaster="status" value="Publish">
+                    <button class="btn btn-success" >
                         Save
                     </button>
                 </div>

@@ -34,6 +34,11 @@
                 <div class="form-group">
                     <label for="nama_kota">Nama Kota</label>
                     <input type="text" class="form-control" name="nama_kota" id="nama_kota" required placeholder="Nama Kota" value="{{ old('nama_kota') }}">
+                    @error('nama_kota')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -43,11 +48,16 @@
                             <option value="{{ $id }}">{{ $name }}</option>
                         @endforeach
                     </select>
+                    @error('provinsi_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
               
 
                 <div class="form-group">
-                    <button class="btn btn-success" nama_kota="status" value="Publish">
+                    <button class="btn btn-success">
                         Save
                     </button>
                 </div>
