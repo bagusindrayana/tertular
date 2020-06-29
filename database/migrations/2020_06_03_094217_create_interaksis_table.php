@@ -29,7 +29,7 @@ class CreateInteraksisTable extends Migration
 
             $table->index('pasien_id');
             $table->index('provinsi_id');
-            $table->index('kota_id', 'kota_id');
+            $table->index('kota_id');
             $table->foreign('pasien_id')->references('id')->on('pasiens')->onDelete('RESTRICT')->onUpdate('RESTRICT');
             $table->foreign('provinsi_id')->references('id')->on('provinsis')->onDelete('RESTRICT')->onUpdate('RESTRICT');
             $table->foreign('kota_id')->references('id')->on('kotas')->onDelete('RESTRICT')->onUpdate('RESTRICT');
